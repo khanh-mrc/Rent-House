@@ -54,41 +54,6 @@ def register(request):
             return redirect('register')
     else:
         return render(request,'accounts/register.html')
-#   form =  CreateUserForm()
-        '''
-    if request.method == 'POST':
-        first_name = request.POST['first_name']
-        last_name = request.POST['last_name']
-        email = request.POST['email']
-        username = request.POST['username']
-        password1 = request.POST['password1']
-        password2 = request.POST['password2']
-
-        if User.objects.filter(username = username).exists():
-            messages.error(request,"That username is exist.")
-            return render(request,'accounts/register1.html')
-        else:
-            user = User.objects.create_user(username=username, password=password1, email= email, first_name=first_name, last_name=last_name)
-            user.save()
-        #print('user created')
-            usern = user.cleaned_data.get('username')
-            messages.success(request,  'Account was created for ')
-            return redirect('login')
-            '''
-    #else:
-        #return render('accounts/register1.html')
-        '''
-        form = CreateUserForm(request.POST)
-        if form.is_valid():
-            form.save()
-            user = form.cleaned_data.get('username')
-            messages.success(request,  'Account was created for '+ user)
-            return redirect('login')
-    context={
-        'form':form
-    }
-    return render(request,'accounts/register1.html',context)
-    '''
 
 def logoutUser(request):
     logout(request)
