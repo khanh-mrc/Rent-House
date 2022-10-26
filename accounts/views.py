@@ -15,14 +15,14 @@ def loginPage(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('dashboard')
+            return redirect('home')
         else: 
             messages.info(request, 'Username or Password is Incorrect')
             #return render(request,"login.html",login.html)
     context ={
         
     }
-    return render(request,'accounts/login1.html',context)
+    return render(request,'accounts/login.html',context)
 
 def register(request):
     if request.method == "POST":
@@ -53,7 +53,7 @@ def register(request):
             messages.error(request,'Password and confirm password does not match')
             return redirect('register')
     else:
-        return render(request,'accounts/register1.html')
+        return render(request,'accounts/register.html')
 #   form =  CreateUserForm()
         '''
     if request.method == 'POST':

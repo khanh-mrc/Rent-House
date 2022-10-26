@@ -20,9 +20,7 @@ from accounts.views import login, register
 #from home.views import home
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('home.urls')),
+    path('',include('home.urls'),name='home'),
     path('',include('accounts.urls')),
-    #path('login/',login,name='login'),
-    #path('register/',register,name='register'),
-    #path('home/',home,name='home')
+    
 ]
