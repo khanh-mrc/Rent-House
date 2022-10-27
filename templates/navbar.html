@@ -7,25 +7,26 @@
         margin-right: 20px;  
     }
 </style>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="bot-margin:0px">
-    <div class="navbar-header">
-    <a class="navbar-brand" href="#">House for Rent</a>
-    </div> 
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-bottom:0px; margin-top:-5px">
+  <div class="navbar-header">
+    <a class="navbar-brand" href="{% url 'home' %}"><img class ="d-inline-block align-top " 
+      src="{% static 'img/ico/f6.ico'%}" width="46" height="46" style="margin-bottom:0px;">Rental Home</a>
+  </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav">
         <li class="nav-item active">
-          <a class="nav-link" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
+          <a class="nav-link active" href="{% url 'home' %}">Home <span class="sr-only">(current)</span></a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link" href="#">POST</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item active">
           <a class="nav-link" href="dashboard">Dashboard</a>
-        </li>%%
-        <li class="nav-item">
+        </li>
+        <li class="nav-item active">
           <a class="nav-link " href="{% url 'about' %}">About</a>
         </li>
       </ul>
@@ -34,23 +35,16 @@
         {% if user.is_authenticated %}
         <span class="hello-msg">Hello, {{request.user}}</span>
         <li><a href="{% url 'logout'%}">
-          <span class="glyphicon glyphicon-log-out" style="color:red;font-size:20px" >LogOut</span></a></li>
+          <span class="glyphicon glyphicon-log-out" style="color:red;font-size:19px" >LogOut</span></a></li>
         {% else %}
         <li><a href="{% url 'login' %}">
-          <span class="glyphicon glyphicon-log-in" style="color:green;font-size:20px"> LogIn</span> </a></li>
+          <span class="glyphicon glyphicon-log-in" style="color:green;font-size:18px"> LogIn</span> </a></li>
+        <li><a href="{% url 'register' %}">
+          <span class="glyphicon glyphicon-user" style="color:green;font-size:18px"> Register</span> </a></li>
         {% endif %}
       </ul>
     </div>
-
-<!---
-    <ul class="navbar-nav ml-auto">
-      {% if user.is_authenticated %}
-      <span class="hello-msg"><a href="{% url 'logout' %}">Logout</a></span>
-      {% else %}
-      <span class="hello-msg"><a href="{% url 'login' %}">Login</a></span>
-      {% endif %}
-    </ul>
-  -->
   </nav>
+
 
   
