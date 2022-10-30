@@ -4,12 +4,26 @@
         font-size: 20px;
         color: blue;
         margin-top: 13px;
-        margin-right: 20px;  
+        margin-right: 20px; 
+    } 
+    .menu-bar{
+        background-image: linear-gradient(90deg,#9890e3 ,#b1f4cf);
     }
+    .nav-link:hover {
+      font-weight: 600;
+      border-bottom: 1px solid #fff;
+    }
+    .navbar-brand{
+     color:grey;
+     font-size: larger;
+     margin: 0px;
+    }
+
 </style>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="margin-bottom:0px; margin-top:-5px">
+<div class="menu-bar">
+<nav class="navbar navbar-expand-lg navbar-light " style="margin-bottom:0px; margin-top:-7px">
   <div class="navbar-header">
-    <a class="navbar-brand" href="{% url 'home' %}"><img class ="d-inline-block align-top " 
+    <a class="navbar-brand" href="{% url 'home' %}"><img class ="d-inline-block align-top" 
       src="{% static 'img/ico/f6.ico'%}" width="46" height="46" style="margin-bottom:0px;">Rental Home</a>
   </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -45,6 +59,6 @@
       </ul>
     </div>
   </nav>
-
+</div>
 
   
