@@ -47,9 +47,9 @@
 
       <ul class="nav navbar-nav navbar-right"> 
         {% if user.is_authenticated %}
-        <span class="hello-msg">Hello, {{request.user}}</span>
+        <span class="hello-msg" style="color:white;font-size:18px">Hello, {{request.user}}</span>
         <li><a href="{% url 'logout'%}">
-          <span class="glyphicon glyphicon-log-out" style="color:red;font-size:19px" >LogOut</span></a></li>
+          <span class="glyphicon glyphicon-log-out" style="color:white;font-size:18px" >LogOut</span></a></li>
         {% else %}
         <li>
           <a href="{% url 'login' %}">
