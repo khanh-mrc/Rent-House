@@ -40,7 +40,7 @@ def register(request):
                 return redirect('register')
             else:
                 if User.objects.filter(email = email).exists():
-                    messages.error(request,'Email "' + email+'" already exists. Please try another email')
+                    messages.error(request,'Email "' + email+'" already being used. Please try another email')
                     return redirect('register')
                 else:
                     user = User.objects.create_user(username = username,

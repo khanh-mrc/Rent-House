@@ -11,3 +11,12 @@ def about(request):
     }
     return render(request,'home/about.html',context)
 
+def detail(request):
+    context={
+    }
+    return render(request,'home/detail.html',context)
+
+def search(request):
+    context={
+    }
+    return render(request,'home/search.html',context)
