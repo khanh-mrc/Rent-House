@@ -7,12 +7,12 @@
                         {% csrf_token %}
                         <h2 class="text-center">Hello!</h2>
 
-                        <div class="form-group was-validated">
+                        <div class="form-group">
                             <label class="form-label" for="username">Username</label>
 
                             <input class="form-control" type="text" name="username" class="form-control" required>
                             <div class="invalid-feedback">
-                                Please enter your username
+
                             </div>
                         </div>
                 
@@ -34,10 +34,12 @@
                             <p id="messages" style="color:red;">{{messages}}</p>
                             {% endfor %}
                             </div>
-                        
-                            <div class="mt-4">
-                                <div class="d-flex justify-content-center links">
-                                    Don't have an account? <a href="{% url 'register' %}" style="color: blue;font-size:13px"> Register</a>
+                            
+                            <div class="mt-4 ml-auto">
+                                <div class="align-self-center">
+                                    Don't have an account? 
+                                    <a href="{% url 'register' %}" 
+                                    style="color: blue;font-size:13px;"> Register</a>
                                 </div>
                             </div>
                     </form>
