@@ -1,13 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <h4>Property Map</h4>
-    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15672.924961103905!2d106.8030541!3d10.8700089!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xafa66f9c8be3c91!2zVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBDw7RuZyBuZ2jhu4cgVGjDtG5nIHRpbiAtIMSQSFFHIFRQLkhDTQ!5e0!3m2!1svi!2s!4v1669718616226!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-</body>
-</html>
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} | About Us {% endblock %}
+
+{% block content %} 
+<div class="aa-properties-content-head">              
+  <div class="aa-properties-content-head-left">
+    <form action="" class="aa-sort-form">
+      <label for="">Sort by</label>
+      <select name="">
+        <option value="1" selected="Default">Default</option>
+        <option value="2">Name</option>
+        <option value="3">Price</option>
+        <option value="4">Date</option>
+      </select>
+    </form>
+    <form action="" class="aa-show-form">
+      <label for="">Show</label>
+      <select name="">
+        <option value="1" selected="12">6</option>
+        <option value="2">12</option>
+        <option value="3">24</option>
+      </select>
+    </form>
+  </div>
+  <div class="aa-properties-content-head-right">
+    <a id="aa-grid-properties" href="#"><span class="fa fa-th"></span></a>
+    <a id="aa-list-properties" href="#"><span class="fa fa-list"></span></a>
+  </div>            
+</div>
+
+{% endblock %}

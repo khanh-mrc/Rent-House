@@ -20,3 +20,8 @@ def search(request):
     context={
     }
     return render(request,'home/search.html',context)
+
+def test(request):
+    context={
+    }
+    return render(request,'home/test.html',context)
