@@ -34,10 +34,12 @@
                             <p id="messages" style="color:red;">{{messages}}</p>
                             {% endfor %}
                             </div>
-                        
-                            <div class="mt-4">
-                                <div class="d-flex justify-content-center links">
-                                    Don't have an account? <a href="{% url 'register' %}" style="color: blue;font-size:13px"> Register</a>
+                            
+                            <div class="mt-4 ml-auto">
+                                <div class="align-self-center">
+                                    Don't have an account? 
+                                    <a href="{% url 'register' %}" 
+                                    style="color: blue;font-size:13px;"> Register</a>
                                 </div>
                             </div>
                     </form>
