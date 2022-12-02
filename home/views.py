@@ -25,3 +25,8 @@ def test(request):
     context={
     }
     return render(request,'home/test.html',context)
+
+def post(request):
+    context={
+    }
+    return render(request,'home/post.html',context)
