@@ -16,10 +16,6 @@ def detail(request):
     }
     return render(request,'home/detail.html',context)
 
-def search(request):
-    context={
-    }
-    return render(request,'home/search.html',context)
 
 def test(request):
     context={
@@ -30,3 +26,11 @@ def post(request):
     context={
     }
     return render(request,'home/post.html',context)
+def listing(request):
+    context={
+    }
+    return render(request,'listings/listing.html',context)
+def testsearch(request):
+    context={
+    }
+    return render(request,'listings/index.html',context)
