@@ -1,8 +1,13 @@
 from http.client import HTTPResponse
 from django.shortcuts import render
+from house.choices import price_choices, bedroom_choices, state_choices
+from house.models import Listing
 # Create your views here.
 def home(request):
-    context={
+    listings = Listing.objects.order_by('-list_date')[:6]
+    context =  {
+        'listings':listings,
+       
     }
     return render(request,'home/index.html',context)
 
@@ -15,12 +20,6 @@ def detail(request):
     context={
     }
     return render(request,'home/detail.html',context)
-
-
-def test(request):
-    context={
-    }
-    return render(request,'home/test.html',context)
 
 def post(request):
     context={

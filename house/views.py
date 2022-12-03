@@ -1,24 +1,25 @@
 from django.shortcuts import render,get_object_or_404
 from django.core.paginator import Paginator
 from house.choices import price_choices, bedroom_choices, state_choices
-
 from .models import Listing
 
-def hello(request):
+def test(request):
    context={}
-   return render(request,"listings/hello.html",context)
+   return render(request,"listings/testlist0.html",context)
 
 def listing_list(request):
     listings=Listing.objects.all()
     context={
         "listings": listings
     }
-    return render(request, "listings/testlist0.html",context)
+    return render(request, "listings/listings.html",context)
 
 def listing_retrieve(request,listing_id):
     listing= Listing.objects.get(pk=listing_id)
+    listings2=Listing.objects.order_by('-list_date')[:6]
     context={
-        "listing":listing
+        "listing":listing,
+        "listings2": listings2
     }
     return render(request, "listings/detail.html",context)
 

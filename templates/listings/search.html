@@ -131,7 +131,11 @@
                     </div>
                     <div class="aa-properties-about">
                       <h3><a href="#">{{listing.title}}</a></h3>
-                      <h5>Address: {{listing.address}}</h5>                      
+                      <h5>Address: {{listing.address}}</h5>
+                      <div class="row text-secondary pb-2">
+                        <div class="col-12">
+                          <i class="fas fa-clock"></i>Update: {{ listing.list_date | timesince }} ago</div>
+                      </div>                    
                     </div>
                     <div class="aa-properties-detial">
                       <span class="aa-price">
