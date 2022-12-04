@@ -1,9 +1,10 @@
 from django.db import models
 from datetime import datetime
-#from realtors.models import Realtor
+from accounts.models import Profile
 
 # Create your models here.pyth
 class Listing(models.Model):
+    lessor = models.ForeignKey(Profile,on_delete = models.CASCADE, blank=True,null=True)
     title = models.CharField(max_length = 120)
     address = models.CharField(max_length = 200)
     city = models.CharField(max_length = 100,default="HCM")

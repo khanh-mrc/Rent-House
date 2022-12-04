@@ -1,5 +1,35 @@
-<form action="" method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Submit</button>
-</form>
+{% extends 'base1.html' %}
+{% load static %}
+{% load humanize%}
+{% block title %}Post{% endblock %}
+{% block content %}
+<body>
+<!-- SCROLL TOP BUTTON -->
+<a class="scrollToTop" href="#"><i class="fa fa-angle-double-up"></i></a>
+<!-- END SCROLL TOP BUTTON -->
+<section id="aa-properties">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <div class="aa-properties-content"> 
+                    <div class="aa-properties-details">
+                        <form method="POST" enctype="multipart/form-data">
+                            <div class="aa-title" style="margin-top:0px;">
+                                <h2>POST</h2>
+                                <span></span>
+                            </div>
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+</body>
+{%endblock%}
