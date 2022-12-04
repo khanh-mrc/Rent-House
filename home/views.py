@@ -33,3 +33,8 @@ def testsearch(request):
     context={
     }
     return render(request,'listings/index.html',context)
+
+def err404(request):
+    context={
+    }
+    return render(request,'home/404.html',context)

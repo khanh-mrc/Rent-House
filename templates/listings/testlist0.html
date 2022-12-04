@@ -433,3 +433,52 @@
   <!-- / Latest property -->
   {% endblock %}
 
+
+   <!-- Listings -->
+   <section id="listings" class="py-4">
+    <div class="container">
+      <div class="row">
+    {% if listings %}
+        {% for listing in listings %}
+        <div class="col-md-4">
+            <article class="aa-properties-item">
+              <a href="{% url 'listing' listing.pk%}" class="aa-properties-item-img">
+                <img src="{{listing.photo_main.url }}" alt="img" width="370" height="240">
+              </a>
+              <div class="aa-tag for-sale">
+                For Sale
+              </div>
+              <div class="aa-properties-item-content">
+                <div class="aa-properties-info">
+                  <span>{{listing.floor}} Floors</span>
+                  <span>{{listing.bedrooms}} Beds</span>
+                  <span>{{listing.bathrooms}} Baths</span>
+                  <span>{{listing.area}} (m2)</span>
+                </div>
+                <div class="aa-properties-about">
+                  <h3><a href="#">{{listing.title}}</a></h3>
+                  <h5>Address: {{listing.address}}</h5>
+                  <div class="row text-secondary pb-2">
+                    <div class="col-12">
+                      <i class="fas fa-clock"></i>Update: {{ listing.list_date | timesince }} ago</div>
+                  </div>                    
+                </div>
+                <div class="aa-properties-detial">
+                  <span class="aa-price">
+                    {{listing.price}} vnd/Month
+                  </span>
+                  <a href="{% url 'listing' listing.pk %}" class="aa-secondary-btn">View Details</a>
+                </div>
+              </div>
+            </article>
+          </div>    
+        {% endfor%}
+    {% else %}
+          <div class="col-md-12">
+            <p>No listings available.</p>
+          </div>
+    {% endif %}
+
+      </div>
+    </div>
+  </section>

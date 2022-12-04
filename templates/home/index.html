@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load humanize %}    
 {% block title %}Home{% endblock %}
 {% block content %}
   <!-- Pre Loader -->
@@ -234,7 +235,7 @@
                       </div>
                       <div class="aa-properties-detial">
                         <span class="aa-price">
-                          {{listing.price}} vnd/Month
+                          {{listing.price | intcomma}} vnd/Month
                         </span>
                         <a href="{% url 'listing' listing.pk %}" class="aa-secondary-btn">View Details</a>
                       </div>
