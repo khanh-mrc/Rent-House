@@ -9,11 +9,16 @@ class Listing(models.Model):
         ("Unvailable", "Unavailable"),
         ("Sale", "For Sale"),
     )
+    city_choices = {
+        ('TP. Hồ Chí Minh', "TP. Hồ Chí Minh"),
+        ('Hà Nội', 'Hà Nội'),
+        ('Đà Nẵng', 'Đà Nẵng'),
+    }
     status = models.CharField(max_length = 20, choices=status_choices, default="Available")
     lessor = models.ForeignKey(Profile,on_delete = models.CASCADE, blank=True,null=True)
     title = models.CharField(max_length = 120)
     address = models.CharField(max_length = 200)
-    city = models.CharField(max_length = 100,default="HCM")
+    city = models.CharField(max_length = 100,choices=city_choices,default='TP. Hồ Chí Minh')
     description = models.TextField(blank=True)
     price = models.IntegerField()
     area = models.IntegerField()

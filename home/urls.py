@@ -8,5 +8,6 @@ urlpatterns=[
     path('about',views.about,name='about'),
     path('detail',views.detail,name='detail'),
     path('post',views.post,name='post'),
-    path('404',views.err404,name='404')
+    path('404',views.err404,name='404'),
+    
 ]

@@ -39,7 +39,8 @@ INSTALLED_APPS = [
     'django.contrib.humanize',
     'accounts',
     'home',
-    'house'
+    'house',
+    #'django-filters',
 ]
 
 MIDDLEWARE = [
