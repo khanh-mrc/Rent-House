@@ -32,11 +32,6 @@ def post(request):
     context={
     }
     return render(request,'home/post.html',context)
-def listing(request):
-    context={
-    }
-    return render(request,'listings/listing.html',context)
-
 
 def err404(request):
     context={

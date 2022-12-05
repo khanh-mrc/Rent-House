@@ -10,7 +10,7 @@ class Listing(models.Model):
         ("Sale", "For Sale"),
     )
     city_choices = {
-        ('TP. Hồ Chí Minh', "TP. Hồ Chí Minh"),
+        ('TP. Hồ Chí Minh', 'TP. Hồ Chí Minh'),
         ('Hà Nội', 'Hà Nội'),
         ('Đà Nẵng', 'Đà Nẵng'),
     }

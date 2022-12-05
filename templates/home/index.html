@@ -52,7 +52,7 @@
           <img src="{% static 'img/3.jpg' %}" alt="img">
           <!-- Top slider content -->
           <div class="aa-top-slider-content">
-            <span class="aa-top-slider-catg">Duplex</span>
+            <span class="aa-top-slider-catg">Drex  X</span>
             <h2 class="aa-top-slider-title">1560 Square Feet</h2>
             <p class="aa-top-slider-location"><i class="fa fa-map-marker"></i>South Beach, Miami (USA)</p>
             <span class="aa-top-slider-off">30% OFF</span>
@@ -124,13 +124,13 @@
               <div class="col-md-4">
                 <div class="aa-single-advance-search">
                   <label class="sr-only">Keywords</label>
-                  <input type="text" name="keywords" class="form-control" placeholder="Keyword (Pool, Garage, etc)">
+                  <input type="text" name="keywords" class="form-control" placeholder="Keyword (address, describe, etc)">
                 </div>
               </div>
               
               <div class="col-md-2">
                 <div class="aa-single-advance-search">
-                  <select name="City" >
+                  <select name="city" >
                    <option selected="true" disabled="disabled">City (All)</option>
                    {% for key,value in city_choices.items %}
                      <option value="{{ key }}"
@@ -220,6 +220,7 @@
                       </div>
                       <div class="aa-properties-about">
                         <h3><a href="#">{{listing.title}}</a></h3>
+                        <h5>City: {{listing.city}}</h5>
                         <h5>Address: {{listing.address}}</h5>
                         <div class="row text-secondary pb-2">
                           <div class="col-12">

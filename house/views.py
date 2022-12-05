@@ -41,23 +41,15 @@ def listing_create(request):
     return render(request,"listings/listing_create.html",context)
 
 def listing_list(request):
-    listings=Listing.objects.all()
-    context={
-        "listings": listings
-    }
-    return render(request, "listings/listings.html",context)
-'''
-def index(request):
-    listings = Listing.objects.order_by('-list_date').filter(is_published = True)
-    paginator = Paginator(listings,3)
+    listings=Listing.objects.order_by('-list_date')
+    paginator = Paginator(listings,6)
     page = request.GET.get('page')
     paged_listings = paginator.get_page(page)
+    context={
+        'listings':paged_listings
+    }
+    return render(request, "listings/listings.html",context)
 
-    context = {
-        'listings':paged_listings}
-         
-    return render(request,'listings/listings.html',context)
-'''
 def listing_retrieve(request,listing_id):
     listing= Listing.objects.get(pk=listing_id)
     listings2=Listing.objects.order_by('-list_date')[:6]
@@ -67,26 +59,23 @@ def listing_retrieve(request,listing_id):
     }
     return render(request, "listings/detail.html",context)
 
-def search(request):
-    queryset_list = Listing.objects.order_by('-list_date')
 
+
+def search(request):
+    queryset_list = Listing.objects.order_by('price','-list_date')
+    #pagnination
+    
     # Keywords 
     if 'keywords' in request.GET:
         keywords = request.GET['keywords']
         if keywords:
-            queryset_list = queryset_list.filter(description__icontains = keywords)
+            queryset_list = queryset_list.filter(address__icontains=keywords) |  queryset_list.filter(description__icontains=keywords)
     
     # city 
     if 'city' in request.GET:
         city = request.GET['city']
         if city:
             queryset_list = queryset_list.filter(city__iexact = city)
-    
-    # state 
-    if 'state' in request.GET:
-        state = request.GET['state']
-        if state:
-            queryset_list = queryset_list.filter(state__iexact = state)
 
     # bedrooms 
     if 'bedrooms' in request.GET:
@@ -98,8 +87,11 @@ def search(request):
     if 'price' in request.GET:
         price = request.GET['price']
         if price:
-            queryset_list = queryset_list.filter(price__lte = price)
-
+            queryset_list = queryset_list.filter(price__lte= price)
+    #Page
+    paginator = Paginator(queryset_list,6)
+    page = request.GET.get('page')
+    paged_listings = paginator.get_page(page)
 
     context =  {
         
@@ -107,10 +99,9 @@ def search(request):
         "price_choices":price_choices,
         "area_choices":area_choices,
         "bedroom_choices":bedroom_choices,
-        "listings":queryset_list,
+        "listings":paged_listings,
         "values":request.GET,
     }
     return render(request,'listings/search.html',context)
 
 
-# Create your views here.
