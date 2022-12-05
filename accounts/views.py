@@ -1,12 +1,37 @@
 from django.shortcuts import render, redirect
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, PasswordChangeForm
 from django.contrib.auth.models import User, auth
 from .models import *
-from .forms import OrderForm, CreateUserForm
+from .forms import *
 from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.views import PasswordChangeView
+from django.urls import reverse_lazy
+
+
 #  Create your views here.
+class PasswordsChangeView(PasswordChangeView):
+    form_class=PasswordChangeForm
+    success_url: reverse_lazy('home')
+def changepwd(request):
+    if request.method == 'POST':
+        user= request.user
+        password = request.POST.get('password')
+        password1 = request.POST.get('password')
+        if password == password1:
+            update_session_auth_hash(request, user)  # Important!
+            messages.success(request, 'Your password was successfully updated!')
+            return redirect('profile')
+        else:
+            messages.error(request,'Password and confirm password does not match')
+            #return redirect('changepwd')
+    context={
+                
+    }
+    return render(request,'accounts/changepwd.html',context)
+
 
 def loginPage(request):
     if request.method == 'POST':
@@ -47,6 +72,7 @@ def register(request):
                     password = password1,email=email,first_name = first_name,
                     last_name = last_name)
                     user.save()
+                    
                     messages.success(request,  'Account was created for "'+ username +'"')
                     return redirect('login')
         else:
@@ -64,4 +90,28 @@ def dashboard(request):
     context={
     }
     return render(request,'accounts/dashboard.html',context)
+
+@login_required(login_url='login' )
+def profile(request):
+    context={
+        
+    }
+    return render(request,'accounts/profile.html',context)
+
+#@allowed_users(allowed_roles=['customer'])
+@login_required(login_url='login')
+def profile_setting(request):
+    Profile = request.user.Profile
+    form = ProfileForm(instance=Profile)
+    if request.method == "POST":
+        form = ProfileForm(request.POST, request.FILES,instance=Profile)
+        if form.is_valid():
+            form.save()
+            #return redirect('/listings')
+    context = {
+        'form':form
+    }
+    return render(request,'accounts/profile_setting.html',context)
+
+
 

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Rent a Place{% endblock %}
+{% block content %}
+  <body>
+  <!-- Pre Loader -->
+  <div id="aa-preloader-area">
+    <div class="pulse"></div>
+  </div>
+  <!-- SCROLL TOP BUTTON -->
+    <a class="scrollToTop" href="#"><i class="fa fa-angle-double-up"></i></a>
+  <!-- END SCROLL TOP BUTTON -->
+
+  <section id="aa-error">
+    <div class="container">
+        <div class="col-md-12">
+          <div class="aa-error-area">
+            <h2>404</h2>
+            <p><span class="fa fa-warning"></span>Oops! The Page you requested was not found!</p>
+            <a href="{%url 'home'%}">Back Home</a>
+          </div>
+        </div>
+      
+    </div>
+  </section>
+
+  
+  </body>
+{%endblock%}

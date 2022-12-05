@@ -35,7 +35,7 @@
           <a class="nav-link active" href="{% url 'home' %}" style="color:white;font-size:18px">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="{% url 'post'%}" style="color:white;font-size:18px">Post</a>
+          <a class="nav-link" href="{% url 'create'  %}" style="color:white;font-size:18px">Post</a>
         </li>
         <li class="nav-item active">
           <a class="nav-link" href="{% url 'dashboard' %}" style="color:white;font-size:18px">Dashboard</a>
@@ -48,6 +48,8 @@
       <ul class="nav navbar-nav navbar-right"> 
         {% if user.is_authenticated %}
         <span class="hello-msg" style="color:white;font-size:18px">Hello, {{request.user}}</span>
+        <li><a href="{% url 'profile'%}">
+          <span class="glyphicon glyphicon-user" style="color:white;font-size:18px; margin-right:px" >Profile</span></a></li>
         <li><a href="{% url 'logout'%}">
           <span class="glyphicon glyphicon-log-out" style="color:white;font-size:18px" >LogOut</span></a></li>
         {% else %}
