@@ -1,10 +1,8 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.core.paginator import Paginator
-
 from django.urls import reverse
 from django.http import HttpResponseRedirect
-
-from house.choices import price_choices, bedroom_choices, state_choices
+from house.choices import price_choices, bedroom_choices, city_choices, area_choices
 from .models import Listing
 from .forms import ListingForm, ListingFormSet
 from accounts.models import Profile
@@ -104,12 +102,15 @@ def search(request):
 
 
     context =  {
+        
+        "city_choices": city_choices,
         "price_choices":price_choices,
-        "state_choices":state_choices,
+        "area_choices":area_choices,
         "bedroom_choices":bedroom_choices,
         "listings":queryset_list,
         "values":request.GET,
     }
     return render(request,'listings/search.html',context)
+
 
 # Create your views here.
