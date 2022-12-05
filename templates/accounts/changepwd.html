@@ -1,0 +1,29 @@
+{% extends 'base1.html' %}
+{% load static %}
+{% block title %}Change Password{% endblock %}
+
+{% block content %}
+<div class="box">
+    {% csrf_token %}
+    <h2 class="text-center">Change Password!</h2>
+		<div class="needs-validation" action="{% url 'profile' %}" method="POST">
+			<form >
+				<div class="alert alert-danger alert-dismissible fade show" role="alert">
+  <strong>Holy guacamole!</strong> You should check in on some of those fields below.
+  <a class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </a>
+</div>
+				<div class="form-group">
+					<label for="exampleInputEmail1">Your new password</label>
+					<input type="password" class="form-control form-control-sm">
+				</div>
+				<div class="form-group">
+					<label for="exampleInputEmail1">Repeat password</label>
+					<input type="password" class="form-control form-control-sm">
+				</div>
+				<button type="submit" class="btn btn-primary btn-block submit-btn">Confirm</button>
+			</form>
+		</div>
+</div>
+{% endblock %}

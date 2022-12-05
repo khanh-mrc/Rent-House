@@ -4,6 +4,12 @@ from accounts.models import Profile
 
 # Create your models here.pyth
 class Listing(models.Model):
+    status_choices = (
+        ("Available","Available"),
+        ("Unvailable", "Unavailable"),
+        ("Sale", "For Sale"),
+    )
+    status = models.CharField(max_length = 20, choices=status_choices, default="Available")
     lessor = models.ForeignKey(Profile,on_delete = models.CASCADE, blank=True,null=True)
     title = models.CharField(max_length = 120)
     address = models.CharField(max_length = 200)

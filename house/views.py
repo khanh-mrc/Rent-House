@@ -1,15 +1,41 @@
 from django.shortcuts import render,get_object_or_404,redirect
 from django.core.paginator import Paginator
+
+from django.urls import reverse
+from django.http import HttpResponseRedirect
+
 from house.choices import price_choices, bedroom_choices, state_choices
 from .models import Listing
-from .forms import ListingForm
+from .forms import ListingForm, ListingFormSet
+from accounts.models import Profile
+
+def create(request, pk):
+    profile= Profile.objects.get(id=pk)
+    form = ListingForm()
+    if request.method == 'POST':
+      form =ListingForm(request.POST, request.FILES)
+      if form.is_valid():
+          new_question = form.save(commit=False)
+          question_formset = ListingFormSet(request.POST, instance=new_question)
+          if question_formset.is_valid():
+              form.save()
+              question_formset.save()
+              return HttpResponseRedirect(reverse('polls:detail',args=(new_question.pk,)))
+      else:
+          print(form.errors)
+    else:
+        form = ListingForm()
+        question_formset = ListingFormSet(instance=Listing())
+    return render(request, "listings/listing_create.html", {'form':form, 'question_formset':question_formset,})
 
 def listing_create(request):
     form = ListingForm()
     if request.method == "POST":
         form = ListingForm(request.POST, request.FILES)
         if form.is_valid():
-            form.save()
+            instance = form.save(commit=False)
+            instance.lessor = request.user.Profile
+            instance.save()
             return redirect('/listings')
     context={
         "form": form
