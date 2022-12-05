@@ -1,0 +1,6 @@
+{
+    "emmet.includeLanguages": {
+        "django-html": "html"
+    },
+    "liveServer.settings.port": 5501
+}
