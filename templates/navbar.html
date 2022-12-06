@@ -37,15 +37,24 @@
         <li class="nav-item active">
           <a class="nav-link" href="{% url 'create'  %}" style="color:white;font-size:18px">Post</a>
         </li>
+        <!--
         <li class="nav-item active">
           <a class="nav-link" href="{% url 'dashboard' %}" style="color:white;font-size:18px">Dashboard</a>
         </li>
+        -->
+        <li class="nav-item active">
+          <a class="nav-link" href="{% url 'listings' %}" style="color:white;font-size:18px">Featured Listings</a>
+        </li>
+
         <li class="nav-item active">
           <a class="nav-link " href="{% url 'about' %}" style="color:white;font-size:18px">About</a>
         </li>
       </ul>
 
-      <ul class="nav navbar-nav navbar-right"> 
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="{% url 'search'%}">
+          <span class="glyphicon glyphicon-search" style="color:white;font-size:20px" >Search</span></a></li>
+
         {% if user.is_authenticated %}
         <span class="hello-msg" style="color:white;font-size:18px">Hello, {{request.user}}</span>
         <li><a href="{% url 'profile'%}">

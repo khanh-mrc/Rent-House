@@ -78,10 +78,10 @@ def search(request):
             queryset_list = queryset_list.filter(city__iexact = city)
 
     # bedrooms 
-    if 'bedrooms' in request.GET:
-        bedrooms = request.GET['bedrooms']
-        if bedrooms:
-            queryset_list = queryset_list.filter(bedrooms__lte = bedrooms)
+    if 'area' in request.GET:
+        area = request.GET['area']
+        if area:
+            queryset_list = queryset_list.filter(area__lte = area)
     
     # price 
     if 'price' in request.GET:
