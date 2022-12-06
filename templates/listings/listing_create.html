@@ -13,14 +13,13 @@
             <div class="col-md-8">
                 <div class="aa-properties-content"> 
                     <div class="aa-properties-details">
-                        <form method="POST" enctype="multipart/form-data">
+                        <form method="POST" enctype="multipart/form-data" style="background-color:azure">
                             <div class="aa-title" style="margin-top:0px;">
                                 <h2>POST</h2>
                                 <span></span>
                             </div>
                             {% csrf_token %}
                             {{ form.as_p }}
-                            
                             
                             <button class="aa-search-btn" type="submit" style="background-color:azure"><b>Submit</button>
                             
