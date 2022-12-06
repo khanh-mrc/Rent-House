@@ -62,7 +62,7 @@ def listing_retrieve(request,listing_id):
 
 
 def search(request):
-    queryset_list = Listing.objects.order_by('price','-list_date')
+    queryset_list = Listing.objects.order_by('price','area','-list_date')
     #pagnination
     
     # Keywords 
