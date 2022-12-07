@@ -3,12 +3,13 @@ from django.urls import reverse_lazy
 
 from django.contrib.auth import views as auth_views
 from . import views
+from house.views import listing_dashboard
 
 urlpatterns = [
     path('login/',views.loginPage,name = "login"),
     path('logout/',views.logoutUser,name = "logout"),
     path('register/',views.register,name = "register"), 
-    path('dashboard/',views.dashboard,name="dashboard"),
+    path('dashboard/',listing_dashboard,name="dashboard"),
     path('profile/',views.profile,name="profile"),
     path('profile/setting',views.profile_setting,name="profile_setting"),            
     #path('profile/changepwd',views.changepwd,name="changepwd"),

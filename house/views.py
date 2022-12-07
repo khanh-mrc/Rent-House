@@ -1,4 +1,5 @@
 from django.shortcuts import render,get_object_or_404,redirect
+from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator
 from django.urls import reverse
 from django.http import HttpResponseRedirect
@@ -7,25 +8,47 @@ from .models import Listing
 from .forms import ListingForm, ListingFormSet
 from accounts.models import Profile
 
-def create(request, pk):
-    profile= Profile.objects.get(id=pk)
-    form = ListingForm()
-    if request.method == 'POST':
-      form =ListingForm(request.POST, request.FILES)
-      if form.is_valid():
-          new_question = form.save(commit=False)
-          question_formset = ListingFormSet(request.POST, instance=new_question)
-          if question_formset.is_valid():
-              form.save()
-              question_formset.save()
-              return HttpResponseRedirect(reverse('polls:detail',args=(new_question.pk,)))
-      else:
-          print(form.errors)
-    else:
-        form = ListingForm()
-        question_formset = ListingFormSet(instance=Listing())
-    return render(request, "listings/listing_create.html", {'form':form, 'question_formset':question_formset,})
 
+@login_required(login_url='login' )
+
+
+@login_required(login_url='login' )
+def listing_dashboard(request):
+    listings=Listing.objects.filter(lessor=request.user.Profile).order_by('-list_date')
+    paginator = Paginator(listings,11)
+    page = request.GET.get('page')
+    paged_listings = paginator.get_page(page)
+    context={
+        'listings':paged_listings
+    }
+    return render(request, "accounts/dashboard.html",context)
+
+@login_required(login_url='login' )
+def listing_delete(request, pk):
+    listing=Listing.objects.get(id=pk)
+    if request.method== "POST":
+        listing.delete()
+        return redirect('/')
+    context={
+        'item': listing
+    }
+    return render(request, 'listings/listing_delete.html',context)
+
+@login_required(login_url='login' )
+def listing_update(request, pk):
+    listing=Listing.objects.get(id=pk)
+    form=ListingForm(instance=listing)
+    if request.method== "POST":
+        form = ListingForm(request.POST,request.FILES, instance= listing)
+        if form.is_valid():
+            form.save()
+            return redirect('/')
+    context={
+        'form': form
+    }
+    return render(request, 'listings/listing_create.html',context)
+
+@login_required(login_url='login' )
 def listing_create(request):
     form = ListingForm()
     if request.method == "POST":
@@ -59,11 +82,8 @@ def listing_retrieve(request,listing_id):
     }
     return render(request, "listings/detail.html",context)
 
-
-
 def search(request):
     queryset_list = Listing.objects.order_by('price','area','-list_date')
-    #pagnination
     
     # Keywords 
     if 'keywords' in request.GET:
