@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'accounts',
     'home',
     'house',
+    'contacts',
     #'django-filters',
 ]
 

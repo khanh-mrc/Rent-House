@@ -18,12 +18,13 @@
             <a href="{% url 'dashboard' %}">
               <i class="fas fa-home"></i> Home</a>
           </li>
-          <li class="breadcrumb-item active"> Dashboard</li>
+          <li class="breadcrumb-item active"> Management</li>
         </ol>
       </nav>
     </div>
   </section>
 
+<!--Your POST-->
   <section id="dashboard/yourhouse" plass="py-4">
     <div class="container">
       <div class="row">
@@ -33,7 +34,7 @@
           <div class="card card-body">
             <table class="table">
               <tr>
-
+                <th>#ID</th>
                 <th>Product</th>
                 <th>Price ( vnd/month )</th>
                 <th>Status</th>
@@ -43,6 +44,7 @@
 
               {% for i in listings %}
               <tr>
+                <td>{{i.id}}</td>
                 <td><a style="color:blue" href="{%  url 'listing' i.id%}">{{i.title}}</a></td>
                 <td>{{i.price | intcomma}}</td>
                 <td>{{i.status}}</td>
@@ -55,20 +57,24 @@
         </div>
       </div>
     </div>
-
   </section>
+<!--/Your POST-->
 
+<!--Contact you send-->
   <section id="dashboard" class="py-4">
     <div class="container">
       <div class="row">
         <div class="col-md-12">
+          <h2>Request you have send</h2>
           {% if contacts %}
-          <p>Here are the property listings that you have inquired about</p>
           <table class="table">
             <thead>
               <tr>
-                <th scope="col">#</th>
+                <th scope="col">#ID</th>
                 <th scope="col">Property</th>
+                <th>Lessor</th>
+                <th>Phone</th>
+                <th>Date</th>
                 <th></th>
               </tr>
             </thead>
@@ -76,19 +82,110 @@
               {% for contact in contacts %}
                 <tr>
                   <td>{{ contact.id }}</td>
-                  <td>{{ contact.listing }}</td>
+                  <td><a style="color:blue" href="{% url 'listing' contact.listing_id %}">{{contact.listing}}</a></td>
+                  <td>{{contact.lessor_name}}</td>
+                  <td>{{contact.lessor_phone}}</td>
+                  <td>{{contact.contact_date}}</td>
                   <td>
-                    <a class="btn btn-light" href="{% url 'listing' contact.listing_id %}">View Listing</a>
+                    <a class="btn btn-light" data-toggle="modal" data-target="#detailsend">View Detail</a>
                   </td>
                 </tr>
               {% endfor %}
             </tbody>
           </table>
           {% else %}
-            <p>You have not made any enquiries.</p>
+            <p>You have not any request.</p>
           {% endif%}
         </div>
       </div>
     </div>
   </section>
+
+  <!--Contact you recived-->
+  <section id="dashboard" class="py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Request you have been received (your id: {{user.id}})</h2>
+          {% if contactsrc %}
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#ID</th>
+                <th scope="col">Property</th>
+                <th>Sender</th>
+                <th>Phone</th>
+                <th>Date</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for contact in contactsrc %}
+                <tr>
+                  <td>{{ contact.id }}</td>
+                  <td><a style="color:blue" href="{% url 'listing' contact.listing_id %}">{{contact.listing}}</a></td>
+                  <td>{{contact.name}}</td>
+                  <td>{{contact.phone}}</td>
+                  <td>{{contact.contact_date}}</td>
+                  <td>
+                    <a class="btn btn-light" data-toggle="modal" data-target="#detailrequest">View Detail</a>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% else %}
+            <p>You have not received any request yet!</p>
+          {% endif%}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  
+<!--Modal Detail request-->
+<div class="modal fade" id="detailrequest" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="inquiryModalLabel">Send require</h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="form-group">
+            <label for="name" class="col-form-label">Name: contact.id </label>
+          </div>
+          <div class="form-group">
+            <label for="email" class="col-form-label">Email:</label>
+            <input type="email" name="email" class="form-control" 
+            {% if user.is_authenticated %}
+              value = "{{ user.Profile.email }}"
+            {% endif %}
+            required>
+          </div>
+          <div class="form-group">
+            <label for="phone" class="col-form-label">Phone:</label>
+            <input type="text" name="phone" class="form-control"
+            {% if user.is_authenticated %}
+              value = "{{ user.Profile.phone }}"
+            {% endif %}
+            required>
+          </div>
+          <div class="form-group">
+            <label for="message" class="col-form-label">Message:</label>
+            <textarea name="message" class="form-control"></textarea>
+          </div>
+          <hr>
+          <input type="submit" value="Send" class="btn btn-block btn-secondary">
+        </form>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger ">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+  <!-- / Modal Detail request -->
 {% endblock %}

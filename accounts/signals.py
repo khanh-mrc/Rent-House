@@ -9,4 +9,6 @@ def save_profile(sender, instance, created, **kwargs):
     user = instance
     if created:
         profile = Profile(user=user)
+        profile.email=user.email
+        profile.name=user.first_name+' '+user.last_name
         profile.save()

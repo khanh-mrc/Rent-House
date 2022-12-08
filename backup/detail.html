@@ -1,0 +1,238 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}    
+{% block title %}Detail{% endblock %}
+{% block content %}
+<body class="aa-price-range">  
+    <!-- Pre Loader -->
+    <div id="aa-preloader-area">
+      <div class="pulse"></div>
+    </div>
+    <!-- SCROLL TOP BUTTON -->
+      <a class="scrollToTop" href="#"><i class="fa fa-angle-double-up"></i></a>
+    <!-- END SCROLL TOP BUTTON -->
+  
+    <!-- Start Properties  -->
+    <section id="aa-properties">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-8">
+            <div class="aa-properties-content">            
+              <!-- Start properties content body -->
+              <div class="aa-properties-details">
+               <div class="aa-properties-details-img">
+                 <img src="{{listing.photo_main.url }}" alt="img">
+                 {% if listing.photo_1 %}
+                 <img src="{{listing.photo_1.url }}" alt="img">
+                 {% endif %}
+                 {% if listing.photo_2 %}
+                 <img src="{{listing.photo_2.url }}" alt="img">
+                 {% endif %}
+                 {% if listing.photo_3 %}
+                 <img src="{{listing.photo_3.url }}" alt="img">
+                 {% endif %}
+                 {% if listing.photo_4 %}
+                 <img src="{{listing.photo_4.url }}" alt="img">
+                 {% endif %}
+                 {% if listing.photo_5 %}
+                 <img src="{{listing.photo_5.url }}" alt="img">
+                 {% endif %}
+               </div>
+                               
+               <div class="aa-properties-info"> 
+                <span ><h5>Date Submitted: {{listing.list_date}}</h5>
+                 <h2>{{listing.title}}</h2>
+                 <span class="aa-price" style="font-size:25px">Price: {{listing.price | intcomma}} VND/Month</span>
+                 <h4>Address:</h4>
+                 <p>{{listing.address}} ,{{listing.city}}</p>
+                 <h4>Decription</h4>
+                 <p>{{listing.description}}</p>                 
+                 <h4>Propery Features</h4>
+                 <ul>
+                  <li>Area: {{listing.area}} (m2)</li>
+                  <li>{{listing.floor}} Floors</li>
+                   <li>{{listing.bedrooms}} Bedroom</li>
+                   <li>{{listing.bathrooms}} Bathroom</li>
+                   <li>{{listing.kitcheen}} Kitchen</li>
+                   <li>Furniture: {{listing.Furniture}} </li>
+
+                   {% if listing.garage %}
+                   <li>Garage</li>
+                   {%endif%}
+                   {% if listing.AirCondition %}
+                   <li>Air Condition</li>
+                   {%endif%}
+                   {% if listing.ComunityCenter %}
+                   <li>Comunity Center</li>
+                   {%endif%}
+                   {% if listing.SecuritySystem %}
+                   <li>Security System</li>
+                   {%endif%}
+                 </ul>
+                 <h4>Property Map</h4>
+                  <iframe width="100%" height="450" frameborder="0" style="border:0" 
+                  src="https://www.google.com/maps/embed/v1/place?q={{listing.address}}+{{listing.city}}&amp;key=AIzaSyD6Coia3ssHYuRKJ2nDysWBdSlVlBCzKAw&amp;zoom=14" allowfullscreen=""></iframe>
+
+
+</div>
+               <!-- Properties social share -->
+               <div class="aa-properties-social">
+                 <ul>
+                   <li>Share</li>
+                   <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                   <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                   <li><a href="#"><i class="fa fa-google-plus"></i></a></li>
+                   <li><a href="#"><i class="fa fa-pinterest"></i></a></li>
+                 </ul>
+               </div>
+              </div>           
+            </div>
+           </div>
+          
+          <!-- Connact -->
+          <div class="col-md-4">
+            <aside class="aa-properties-sidebar">
+              <div class="aa-properties-single-sidebar">
+                <form action="{% url 'home' %}" method="POST">
+                  <!--Lessor-->            
+                <div class="agent-details">
+                  <div class="d-flex align-items-center">
+                   <div >
+                      <a href="home" rel="">
+                       <img class="" style ="margin-right:10px" src="{{ listing.lessor.profile_pic.url}}" alt="img" width="80" height="80">
+                      </a>
+                    </div>
+                  <ul >
+                    <li>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person" viewBox="0 0 16 16">
+                        <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0Zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4Zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10Z"/>
+                      </svg>{{listing.lessor.name}}
+                    </li>
+                    <li >
+                      
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-telephone" viewBox="0 0 16 16">
+                        <path d="M3.654 1.328a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+                      </svg>
+                        <span >
+                          <a href="tel:113">{{listing.lessor.phone}}</a>
+                        </span>
+                      </li>
+                      <li>
+          
+                      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-envelope" viewBox="0 0 16 16">
+                        <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1H2Zm13 2.383-4.708 2.825L15 11.105V5.383Zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741ZM1 11.105l4.708-2.897L1 5.383v5.722Z"/>
+                      </svg>
+                        <i ></i>
+                          <a href="home" rel="nofollow">{{listing.lessor.email}}</a>
+                    </li>
+                  </ul>
+                  </div>
+                </div>
+                  <!--End Lessor-->
+                  <!--send messgaes-->
+                  <h4>Sent messages</h4>
+                  {% csrf_token %}
+                  {% if user.is_authenticated %}
+                    <input type="hidden" name="user_id" value="{{ user.id}}">
+                  {% else %}
+                  <input type="hidden" name="user_id" value="0">
+                  {% endif %}
+                  <input type="hidden" name="realtor_email" value="{{ listing.realtor.email }}">
+                  <input type="hidden" name="listing_id" value="{{ listing.id }}">
+                  <div class="form-group">
+                    <label for="property_name" class="col-form-label">Property:</label>
+                    <input type="text" name="listing" class="form-control" value=" {{ listing.title }}" >
+                  </div>
+                  <div class="form-group">
+                    <label for="name" class="col-form-label">Name:</label>
+                    <input type="text" name="name" class="form-control" 
+                    {% if user.is_authenticated %}
+                      value = "{{ user.first_name }} {{ user.last_name }}"
+                    {% endif %}
+                    required>
+                  </div>
+                  <div class="form-group">
+                    <label for="email" class="col-form-label">Email:</label>
+                    <input type="email" name="email" class="form-control" 
+                    {% if user.is_authenticated %}
+                      value = "{{ user.email }}"
+                    {% endif %}
+                    required>
+                  </div>
+                  <div class="form-group">
+                    <label for="phone" class="col-form-label">Phone:</label>
+                    <input type="text" name="phone" class="form-control">
+                  </div>
+                  <div class="form-group">
+                    <label for="message" class="col-form-label">Message:</label>
+                    <textarea name="message" class="form-control"></textarea>
+                  </div>
+                  <hr>
+                  <input type="submit" value="Send" class="btn btn-block btn-secondary">
+                </form>
+              </div> 
+            </aside>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- / Properties  -->
+  <!--NEAR Listings -->
+  <section id="listings" class="py-4">
+    <div class="aa-nearby-properties">
+      <div class="aa-title">
+        <h2>Nearby Properties</h2>
+        <span></span>
+      </div>
+      
+    </div>
+    <div class="container">
+      <div class="row">
+    {% if listings2 %}
+            {% for listing in listings2 %}
+        <div class="col-md-4">
+            <article class="aa-properties-item">
+              <a href="{% url 'listing' listing.pk%}" class="aa-properties-item-img">
+                <img src="{{listing.photo_main.url }}" alt="img" width="370" height="240">
+              </a>
+              <div class="aa-tag for-sale">
+                For Sale
+              </div>
+              <div class="aa-properties-item-content">
+                <div class="aa-properties-info">
+                  <span>{{listing.floor}} Floors</span>
+                  <span>{{listing.bedrooms}} Beds</span>
+                  <span>{{listing.bathrooms}} Baths</span>
+                  <span>{{listing.area}} (m2)</span>
+                </div>
+                <div class="aa-properties-about">
+                  <h3><a href="{% url 'listing' listing.pk %}">{{listing.title}}</a></h3>
+                  <h5>Address: {{listing.address}}</h5>
+                  <div class="row text-secondary pb-2">
+                    <div class="col-12">
+                      <i class="fas fa-clock"></i>Update: {{ listing.list_date | timesince }} ago</div>
+                  </div>                    
+                </div>
+                <div class="aa-properties-detial">
+                  <span class="aa-price">
+                    {{listing.price | intcomma}} vnd/Month
+                  </span>
+                  <a href="{% url 'listing' listing.pk %}" class="aa-secondary-btn">View Details</a>
+                </div>
+              </div>
+            </article>
+          </div>    
+        {% endfor%}
+    {% else %}
+          <div class="col-md-12">
+            <p>No listings available.</p>
+          </div>
+    {% endif %}
+
+      </div>
+    </div>
+  </section>
+             
+              <!--END NEar listing-->
+    </body>
+{% endblock %}

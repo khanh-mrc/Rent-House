@@ -7,7 +7,7 @@ from house.choices import price_choices, bedroom_choices, city_choices, area_cho
 from .models import Listing
 from .forms import ListingForm, ListingFormSet
 from accounts.models import Profile
-
+from contacts.models import Contact
 
 @login_required(login_url='login' )
 
@@ -15,11 +15,15 @@ from accounts.models import Profile
 @login_required(login_url='login' )
 def listing_dashboard(request):
     listings=Listing.objects.filter(lessor=request.user.Profile).order_by('-list_date')
+    user_contacts = Contact.objects.filter(user_id = request.user.id).order_by('-contact_date')
+    lessor_contacts = Contact.objects.filter(lessor_id = request.user.id).order_by('-contact_date')
     paginator = Paginator(listings,11)
     page = request.GET.get('page')
     paged_listings = paginator.get_page(page)
     context={
-        'listings':paged_listings
+        'listings':paged_listings,
+        'contacts': user_contacts,
+        'contactsrc': lessor_contacts,
     }
     return render(request, "accounts/dashboard.html",context)
 

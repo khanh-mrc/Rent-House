@@ -9,12 +9,22 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
-
+from contacts.models import Contact
 
 #  Create your views here.
+'''
+def dashboard(request):
+    user_contacts = Contact.objects.filter(user_id = request.user.id).order_by('-contact_date')
+    context = {
+        'contacts': user_contacts,
+    }
+   return render(request,'accounts/dashboard.html',context)
+'''
 class PasswordsChangeView(PasswordChangeView):
     form_class=PasswordChangeForm
     success_url: reverse_lazy('home')
+    
+@login_required(login_url='login' )
 def changepwd(request):
     if request.method == 'POST':
         user= request.user
@@ -85,11 +95,7 @@ def logoutUser(request):
     logout(request)
     return redirect('login')
 
-@login_required(login_url='login' )
-def dashboard(request):
-    context={
-    }
-    return render(request,'accounts/dashboard.html',context)
+
 
 @login_required(login_url='login' )
 def profile(request):
