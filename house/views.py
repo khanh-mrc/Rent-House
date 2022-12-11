@@ -93,7 +93,7 @@ def search(request):
     if 'keywords' in request.GET:
         keywords = request.GET['keywords']
         if keywords:
-            queryset_list = queryset_list.filter(address__icontains=keywords) |  queryset_list.filter(description__icontains=keywords)
+            queryset_list = queryset_list.filter(address__icontains=keywords) |  queryset_list.filter(description__icontains=keywords) | queryset_list.filter(title__icontains=keywords)
     
     # city 
     if 'city' in request.GET:

@@ -27,6 +27,8 @@ DEBUG = True
 ALLOWED_HOSTS = []
 
 
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -132,3 +134,9 @@ MEDIA_URL = '/media/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Email config
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'rentalhouses15@gmail.com' #pwd: s15rentalhouse
+EMAIL_HOST_PASSWORD = 'c e y s w d w n p f x g c m n z'
+EMAIL_USE_TLS = True 

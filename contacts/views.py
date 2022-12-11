@@ -20,35 +20,42 @@ def contact(request):
 
         contact = Contact(listing_id = listing_id,
                             listing = listing,
+                            #sender
+                            user_id =user_id,
                             name = name,
                             email = email,
                             phone = phone,
                             message = message,
-                            user_id =user_id,
+                            #recieved
                             lessor_id =lessor_id,
                             lessor_name=lessor_name,
                             lessor_phone=lessor_phone,
                             )
 
-        # Check if inquiry has already been made.
+        # Check if request has already been made.
         if request.user.is_authenticated:
             user_id = request.user.id
             has_contacted = Contact.objects.all().filter(listing_id = listing_id,user_id = user_id)
             if has_contacted:
-                messages.error(request,"You have aleady made an inquiry")
+                messages.error(request,": You have aleady made a request before")
                 return redirect('/listings/'+ listing_id)
         contact.save()
         # Send mail
-        '''
+        print(lessor_email)
         send_mail(
-            "Property Listing Inquiry",
-            'There has been an inquiry for listing '+ listing + 
-            ". Sign in to the admin panel for more info."+message,
-            'khanhpham.2004.02@gmail.com',
-            [contact.email,],
+            "You have a rental request from Rental Home",
+            'There has been a request for Property: '+ listing  + 
+            '\nFrom: '+ 
+            '\nName: ' + name +
+            '\nEmail: ' + email+
+            '\nPhone Number: '+phone +
+            '\nMessages: ' +message+
+            "\n. Sign in to your account management for more info.",
+            "Rental Home <rentalhouses15@gmail.com>",
+            [lessor_email],
             fail_silently=False)
     
-        messages.success(request,"Your request has been submitted. "+
-        "We will get backto you soon.")
-        '''
+        messages.success(request,"Your request has been submitted. We have notified to the Lessor. "+
+        "The lessor will contact you soon.")
+        
         return redirect('/listings/'+listing_id)

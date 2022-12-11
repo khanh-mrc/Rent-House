@@ -4,13 +4,19 @@
 {% block title %}Detail{% endblock %}
 {% block content %}
 <body class="aa-price-range">  
-  <!-- Pre Loader -->
+  {%include 'modal/contact.html'%}
+  <!-- Pre Loader 
   <div id="aa-preloader-area">
     <div class="pulse"></div>
   </div>
+  -->
   <!-- SCROLL TOP BUTTON -->
     <a class="scrollToTop" href="#"><i class="fa fa-angle-double-up"></i></a>
   <!-- END SCROLL TOP BUTTON -->
+
+  <!--Notify-->
+{% include 'notify.html'%}
+  <!--end notify-->
 
   <!-- Start Properties  -->
   <section id="aa-properties">
@@ -124,13 +130,13 @@
                 </div> 
               </div>
             </aside>
-            <button class="btn-primary btn-block btn-lg" data-toggle="modal" data-target="#inquiryModal">Send require</button>
+            <button class="btn-primary btn-block btn-lg" data-toggle="modal" data-target="#contactLessor">Send require</button>
           </div>
       </div>
     </div>
   </section>
 
-<!--Modal Contact-->
+<!--Modal Contact
   <div class="modal fade" id="inquiryModal" role="dialog">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -149,10 +155,10 @@
             {% else %}
             <input type="hidden" name="user_id" value="0">
             {% endif %}
-            <input type="hidden" name="lessor_email" value="{{ listing.lessor.email }}">
             <input type="hidden" name="listing_id" value="{{ listing.id }}">
             <input type="hidden" name="lessor_id" value="{{ listing.lessor.user.id }}">
             <input type="hidden" name="lessor_name" value="{{ listing.lessor.name }}">
+            <input type="hidden" name="lessor_email" value="{{ listing.lessor.email }}">
             <input type="hidden" name="lessor_phone" value="{{listing.lessor.phone}}">
             <div class="form-group">
               <label for="property_name" class="col-form-label">Property:</label>
@@ -196,8 +202,7 @@
       </div>
     </div>
   </div>
-    <!-- / Modal Connact  -->
-  
+/ Modal Connact  -->
 
   <!--NEAR Listings -->
   <section id="listings" class="py-4">
