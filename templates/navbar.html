@@ -1,4 +1,4 @@
-{% load static %}
+
 <style>
     .hello-msg{
         font-size: 20px;
@@ -10,65 +10,74 @@
         background-color: #10284e ;
     }
     .nav-link:hover {
-      font-weight: 600;
+      font-weight: 400;
       border-bottom: 1px solid #fff;
     }
-    .navbar-brand{
-     color:grey;
-     font-size: larger;
-     margin: 0px 5px 20px 5px;
-    }
+   
 
 </style>
-<div class="menu-bar">
-<nav class="navbar navbar-expand-lg navbar-light " style="margin:-10px;">
-  <div class="navbar-header">
-    <a class="navbar-brand" href="{% url 'home' %}">
-      <img src="{% static 'img/ico/logo.png'%}" width="46" height="40"></a>
-  </div>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNav">
-      <ul class="navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link active" href="{% url 'home' %}" style="color:white;font-size:18px">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item active">
-          <a class="nav-link" href="{% url 'create'  %}" style="color:white;font-size:18px">Post</a>
-        </li>
-        
-        <li class="nav-item active">
-          <a class="nav-link" href="{% url 'dashboard' %}" style="color:white;font-size:18px">Management</a>
-        </li>
-        
-        <li class="nav-item active">
-          <a class="nav-link" href="{% url 'listings' %}" style="color:white;font-size:18px">Featured Listings</a>
-        </li>
 
-        <li class="nav-item active">
-          <a class="nav-link " href="{% url 'about' %}" style="color:white;font-size:18px">About</a>
-        </li>
-      </ul>
+<div class="navbar navbar-inverse " style="margin:0px;">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="navbar-header">
+                        <button class="navbar-toggle" data-target="#mobile_menu" data-toggle="collapse"><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                        <a href="{% url 'home' %}" class="navbar-brand" style="color:Green;font-size:20px">Rental House</a>
+                    </div>
 
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="{% url 'search'%}">
-          <span class="glyphicon glyphicon-search" style="color:white;font-size:20px" >Search</span></a></li>
+                    <div class="navbar-collapse collapse" id="mobile_menu">
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item active">
+                                <a class="nav-link active" href="{% url 'home' %}" style="color:white;font-size:18px">Home <span class="sr-only">(current)</span></a>
+                            </li>
+                            
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{% url 'create'  %}" style="color:white;font-size:18px">Post</a>
+                            </li>
+                            {% if user.is_authenticated%}
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{% url 'dashboard' %}" style="color:white;font-size:18px">Management</a>
+                            </li>
+                            {% endif%}
+                            <li class="nav-item active">
+                                <a class="nav-link" href="{% url 'listings' %}" style="color:white;font-size:18px">Featured Listings</a>
+                            </li>
 
-        {% if user.is_authenticated %}
-        <span class="hello-msg" style="color:white;font-size:18px">Hello, {{request.user}}</span>
-        <li><a href="{% url 'profile'%}">
-          <span class="glyphicon glyphicon-user" style="color:white;font-size:18px; margin-right:px" >Profile</span></a></li>
-        <li><a href="{% url 'logout'%}">
-          <span class="glyphicon glyphicon-log-out" style="color:white;font-size:18px" >LogOut</span></a></li>
-        {% else %}
-        <li>
-          <a href="{% url 'login' %}">
-          <span class="glyphicon glyphicon-log-in" style="color:white;font-size:18px"> Login</span> </a></li>
-        <li><a href="{% url 'register' %}">
-          <span class="glyphicon glyphicon-user" style="color:white;font-size:18px"> Register</span> </a></li>
-        {% endif %}
-      </ul>
+                            <li class="nav-item active">
+                                <a class="nav-link " href="{% url 'about' %}" style="color:white;font-size:18px">About Us</a>
+                            </li>
+                        </ul>
+                        <ul class="nav navbar-nav">
+                            <li>
+                                <form action="{% url 'search' %}" class="navbar-form">
+                                    <div class="form-group">
+                                        <div class="input-group">
+                                            <input type="search" name="keywords" id="" placeholder="Search Anything Here..." class="form-control">
+                                            <!--
+                                            <span class="input-group-addon" type="submit"><span class="glyphicon glyphicon-search" type="submit"></span></span>
+                                            -->
+                                            <span class="input-group-addon">
+                                                <button class="glyphicon glyphicon-search" type="submit"></button>
+                                              </span>
+                                        </div>
+                                    </div>
+                                </form>
+                            </li>
+                        </ul>
+
+                        <ul class="nav navbar-nav navbar-right">
+                            {% if user.is_authenticated %}
+                                <li><a href="{% url 'profile' %}"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+                                <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+                            {% else %}
+                                <li><a href="{% url 'login' %}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                                <li><a href="{% url 'register' %}"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+                            
+                            {%endif%}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </nav>
-</div>

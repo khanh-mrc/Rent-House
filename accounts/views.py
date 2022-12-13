@@ -99,8 +99,15 @@ def logoutUser(request):
 
 @login_required(login_url='login' )
 def profile(request):
-    context={
-        
+    Profile = request.user.Profile
+    form = ProfileForm(instance=Profile)
+    if request.method == "POST":
+        form = ProfileForm(request.POST, request.FILES,instance=Profile)
+        if form.is_valid():
+            form.save()
+            #return redirect('/listings')
+    context = {
+        'form':form
     }
     return render(request,'accounts/profile.html',context)
 
