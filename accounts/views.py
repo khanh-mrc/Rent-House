@@ -23,7 +23,7 @@ def dashboard(request):
 class PasswordsChangeView(PasswordChangeView):
     form_class=PasswordChangeForm
     success_url: reverse_lazy('home')
-    
+     
 @login_required(login_url='login' )
 def changepwd(request):
     if request.method == 'POST':

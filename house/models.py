@@ -78,7 +78,7 @@ class Listing(models.Model):
     lessor = models.ForeignKey(Profile,on_delete = models.CASCADE, blank=True,null=True)
     title = models.CharField(max_length = 120)
     address = models.CharField(max_length = 200)
-    city = models.CharField(max_length = 100,choices=city_choices,default='TP. Hồ Chí Minh')
+    city = models.CharField(max_length = 100,choices=city_choices,default='null')
     description = models.TextField(blank=True)
     price = models.IntegerField()
     area = models.IntegerField()

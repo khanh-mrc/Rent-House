@@ -132,7 +132,7 @@
               <div class="col-md-2">
                 <div class="aa-single-advance-search">
                   <select name="city" >
-                   <option selected="true" disabled="disabled">City (All)</option>
+                   <option selected="true" value="" >City (All)</option>
                    {% for key,value in city_choices.items %}
                      <option value="{{ key }}"
                      {% if key == values.city %}
@@ -147,7 +147,7 @@
                 <div class="col-md-2">
                   <div class="aa-single-advance-search">
                     <select name="price" >
-                     <option selected="true" disabled="disabled">Price (All)</option>
+                     <option selected="true" value="">Price (All)</option>
                      {% for key,value in price_choices.items %}
                        <option value="{{ key }}"
                        {% if key == values.price %}
@@ -162,7 +162,7 @@
                 <div class="col-md-2">
                   <div class="aa-single-advance-search">
                     <select name="area" >
-                     <option selected="true" disabled="disabled">Area (All)</option>
+                     <option selected="true" value="">Area (All)</option>
                      {% for key,value in area_choices.items %}
                        <option value="{{ key }}"
                        {% if key == values.area %}
@@ -199,12 +199,12 @@
           <span></span>
         </div>
         <!--Listing-->
-        <div id="listings" class="py-4">
-          <div class="container">
+        <div id="listings" class="py-4" >
+          <div class="container" >
             <div class="row">
-          {% if listings %}
+             {% if listings %}
               {% for listing in listings %}
-              <div class="col-md-4">
+              <div class="col-md-4" >
                   <article class="aa-properties-item">
                     <a href="{% url 'listing' listing.pk%}" class="aa-properties-item-img">
                       <img src="{{listing.photo_main.url }}" alt="img" width="370" height="240">
@@ -220,13 +220,9 @@
                         <span>{{listing.area}} (m2)</span>
                       </div>
                       <div class="aa-properties-about">
-                        <h3><a href="{% url 'listing' listing.pk%}">{{listing.title}}</a></h3>
-                        <h5>City: {{listing.city}}</h5>
-                        <h5>Address: {{listing.address}}</h5>
-                        <div class="row text-secondary pb-2">
-                          <div class="col-12">
-                            <i class="fas fa-clock"></i>Update: {{ listing.list_date | timesince }} ago</div>
-                        </div>                    
+                        <h3 style="font-size:19px"><a href="{% url 'listing' listing.pk%}">{{listing.title}}</a></h3>
+                        <h5><strong>Address: </strong>{{listing.address}}, {{listing.city}}</h5>
+                        <i>Update: {{ listing.list_date | timesince }} ago</i>                   
                       </div>
                       <div class="aa-properties-detial">
                         <span class="aa-price">
@@ -236,14 +232,13 @@
                       </div>
                     </div>
                   </article>
-                </div>    
+                </div>  
               {% endfor%}
           {% else %}
                 <div class="col-md-12">
                   <p>No listings available.</p>
                 </div>
           {% endif %}
-      
             </div>
           </div>
         </div>      

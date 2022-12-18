@@ -5,9 +5,10 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from house.choices import price_choices, bedroom_choices, city_choices, area_choices
 from .models import Listing
-from .forms import ListingForm, ListingFormSet
+from .forms import ListingForm
 from accounts.models import Profile
 from contacts.models import Contact
+from accounts.forms import *
 
 @login_required(login_url='login' )
 
@@ -62,6 +63,18 @@ def listing_create(request):
             instance.lessor = request.user.Profile
             instance.save()
             return redirect('/listings')
+
+    Profile = request.user.Profile
+    form1 = ProfileForm(instance=Profile)
+    if request.method == "POST":
+        form1 = ProfileForm(request.POST, request.FILES,instance=Profile)
+        if form1.is_valid():
+            form1.save()
+            #return redirect('/listings')
+    context = {
+        'form':form,
+        'form1':form1
+    }
     context={
         "form": form
     }
@@ -101,7 +114,7 @@ def search(request):
         if city:
             queryset_list = queryset_list.filter(city__iexact = city)
 
-    # bedrooms 
+    # area 
     if 'area' in request.GET:
         area = request.GET['area']
         if area:
