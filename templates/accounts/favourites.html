@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% block title %}Favourties{% endblock %}
+{% block content %}
+{% load humanize %}
+<div class="container">
+    <section class="jumbotron text-center bg-white">
+        <div class="container">
+            <h1>Users saved favourite posts</h1>
+            <p class="lead text-muted">Here you can remove or view the favourites posts you have added</p>
+        </div>
+    </section>
+    
+    <div class="row">
+        {% if favourites %}
+                {% for listing in favourites %}
+            <div class="col-md-4">
+              <article class="aa-properties-item" >
+                <a href="{% url 'listing' listing.pk%}" class="aa-properties-item-img">
+                  <img src="{{listing.photo_main.url }}" alt="img" width="370" height="240">
+                </a>
+                <div class="aa-tag for-sale">
+                  {{listing.status}}
+                </div>
+                <div class="aa-properties-item-content">
+                  <div class="aa-properties-info">
+                    <span>{{listing.floor}} Floors</span>
+                    <span>{{listing.bedrooms}} Beds</span>
+                    <span>{{listing.bathrooms}} Baths</span>
+                    <span>{{listing.area}} (m2)</span>
+                  </div>
+                  <div class="aa-properties-about">
+                    <h3 style="font-size:19px"><a href="{% url 'listing' listing.pk%}">{{listing.title}}</a></h3>
+                    <h5><strong>Address: </strong>{{listing.address}}, {{listing.city}}</h5>
+                    <i>Update: {{ listing.list_date | timesince }} ago</i>                   
+                  </div>
+                  <div class="aa-properties-detial">
+                    <span class="aa-price">
+                      {{listing.price | intcomma}} vnd/Month
+                    </span>
+                    <a href="{% url 'listing' listing.pk %}" class="aa-secondary-btn">View Details</a>
+                  </div>
+                </div>
+                <div id="favourite-section"><a href="{% url 'favourite_add' listing.pk %}"
+                    class="btn btn-outline-primary">Remove</a></div>
+              </article>
+              </div>  
+            {% endfor%}
+        {% else %}
+              <div class="col-md-12">
+                <p>No listings available.</p>
+              </div>
+        {% endif %}
+    
+          </div>
+</div>
+{% endblock %}

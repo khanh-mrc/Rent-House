@@ -1,9 +1,9 @@
 from django.urls import path
 from django.urls import reverse_lazy
-
 from django.contrib.auth import views as auth_views
 from . import views
 from house.views import listing_dashboard
+
 
 urlpatterns = [
     path('login/',views.loginPage,name = "login"),
@@ -15,4 +15,6 @@ urlpatterns = [
     path('profile/setting',views.profile_setting,name="profile_setting"),            
     #path('profile/changepwd',views.changepwd,name="changepwd"),
     path('profile/password_change', auth_views.PasswordChangeView.as_view(success_url=reverse_lazy('account:password_change_done')), name="password_change"),
+    path('profile/favourites/', views.favourite_list, name='favourite_list'),
+    path('fav/<str:pk>/', views.favourite_add, name='favourite_add'),
 ]

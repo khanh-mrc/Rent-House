@@ -92,10 +92,17 @@ def listing_list(request):
 
 def listing_retrieve(request,listing_id):
     listing= Listing.objects.get(pk=listing_id)
+
+    fav = bool
+
+    if listing.favourites.filter(id=request.user.id).exists():
+        fav = True
+
     listings2=Listing.objects.order_by('-list_date')[:6]
     context={
         "listing":listing,
-        "listings2": listings2
+        "listings2": listings2,
+        'fav': fav
     }
     return render(request, "listings/detail.html",context)
 

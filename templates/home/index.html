@@ -209,9 +209,12 @@
                     <a href="{% url 'listing' listing.pk%}" class="aa-properties-item-img">
                       <img src="{{listing.photo_main.url }}" alt="img" width="370" height="240">
                     </a>
-                    <div class="aa-tag for-sale">
-                      {{listing.status}}
-                    </div>
+                    
+                      <div class="aa-tag for-sale">
+                        {{listing.status}}
+                      </div>
+                      
+                    
                     <div class="aa-properties-item-content">
                       <div class="aa-properties-info">
                         <span>{{listing.floor}} Floors</span>

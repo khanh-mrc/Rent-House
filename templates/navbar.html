@@ -73,6 +73,12 @@
 
                         <ul class="nav navbar-nav navbar-right">
                             {% if user.is_authenticated %}
+                                <li style="font-size:18px">
+                                    <a href="{% url 'favourite_list'%}" style="color: red; ">
+                                        <i class="fa fa-heart-o " aria-hidden="true"></i>
+
+                                    </a>
+                                </li>
                                 <li><a href="{% url 'profile' %}"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
                                 <li><a href="{% url 'logout' %}"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
                             {% else %}
