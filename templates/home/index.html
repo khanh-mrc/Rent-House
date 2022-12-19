@@ -24,90 +24,30 @@
           <!-- Top slider content -->
           <div class="aa-top-slider-content">
             <span class="aa-top-slider-catg">Blue House</span>
-            <h2 class="aa-top-slider-title">345 square meters </h2>
-            <p class="aa-top-slider-location"><i class="fa fa-map-marker"></i>Quan 1, TP. Ho Chi Minh</p>
+            <h2 class="aa-top-slider-title">123 square meters </h2>
+            <p class="aa-top-slider-location"><i class="fa fa-map-marker"></i>123 Nguyen Hue, Quan 1, TP. Ho Chi Minh</p>
             <span class="aa-top-slider-off">30% OFF</span>
             <p class="aa-top-slider-price">3,456,000 vnd/month</p>
-            <a href="listings/15" class="aa-top-slider-btn">Read More <span class="fa fa-angle-double-right"></span></a>
+            <a href="listings/23" class="aa-top-slider-btn">Read More <span class="fa fa-angle-double-right"></span></a>
           </div>
           <!-- / Top slider content -->
         </div>
         <!-- / Top slider single slide -->
-        <!-- Top slider single slide -->
+        {% for listing in listings %}
         <div class="aa-top-slider-single">
-          <img src="{% static 'img/2.jpg' %}" alt="img">
+          <img src="{{listing.photo_main.url }}" alt="img">
           <!-- Top slider content -->
           <div class="aa-top-slider-content">
-            <span class="aa-top-slider-catg">Blue House</span>
-            <h2 class="aa-top-slider-title">345 square meters </h2>
-            <p class="aa-top-slider-location"><i class="fa fa-map-marker"></i>Quan 1, TP. Ho Chi Minh</p>
-            <span class="aa-top-slider-off">30% OFF</span>
-            <p class="aa-top-slider-price">3,456,000 vnd/month</p>
-            <a href="/listings/14" class="aa-top-slider-btn">Read More <span class="fa fa-angle-double-right"></span></a>
+            <span class="aa-top-slider-catg">{{listing.title}}</span>
+            <h2 class="aa-top-slider-title">{{listing.area}} Square meters</h2>
+            <p class="aa-top-slider-location"><i class="fa fa-map-marker"></i>{{listing.address}}, {{listing.city}}</p>
+           
+            <p class="aa-top-slider-price">{{listing.price | intcomma}} vnd/Month</p>
+            <a href="{%url 'listing' listing.id%}" class="aa-top-slider-btn">Read More <span class="fa fa-angle-double-right"></span></a>
           </div>
           <!-- / Top slider content -->
         </div>
-        <!-- / Top slider single slide -->
-        <!-- Top slider single slide -->
-        <div class="aa-top-slider-single">
-          <img src="{% static 'img/3.jpg' %}" alt="img">
-          <!-- Top slider content -->
-          <div class="aa-top-slider-content">
-            <span class="aa-top-slider-catg">Blue House</span>
-            <h2 class="aa-top-slider-title">345 square meters </h2>
-            <p class="aa-top-slider-location"><i class="fa fa-map-marker"></i>Quan 1, TP. Ho Chi Minh</p>
-            <span class="aa-top-slider-off">30% OFF</span>
-            <p class="aa-top-slider-price">3,456,000 vnd/month</p>
-            <a href="listings/1" class="aa-top-slider-btn">Read More <span class="fa fa-angle-double-right"></span></a>
-          </div>
-          <!-- / Top slider content -->
-        </div>
-        <!-- / Top slider single slide -->       
-         <!-- Top slider single slide -->
-        <div class="aa-top-slider-single">
-          <img src="{% static 'img/5.jpg' %}" alt="img">
-          <!-- Top slider content -->
-          <div class="aa-top-slider-content">
-            <span class="aa-top-slider-catg">Blue House</span>
-            <h2 class="aa-top-slider-title">345 square meters </h2>
-            <p class="aa-top-slider-location"><i class="fa fa-map-marker"></i>Quan 1, TP. Ho Chi Minh</p>
-            <span class="aa-top-slider-off">30% OFF</span>
-            <p class="aa-top-slider-price">3,456,000 vnd/month</p>
-            <a href="{% url 'listings' %}" class="aa-top-slider-btn">Read More <span class="fa fa-angle-double-right"></span></a>
-          </div>
-          <!-- / Top slider content -->
-        </div>
-        <!-- / Top slider single slide -->        
-         <!-- Top slider single slide -->
-        <div class="aa-top-slider-single">
-          <img src="{% static 'img/4.jpg' %}" alt="img">
-          <!-- Top slider content -->
-          <div class="aa-top-slider-content">
-            <span class="aa-top-slider-catg">Blue House</span>
-            <h2 class="aa-top-slider-title">345 square meters </h2>
-            <p class="aa-top-slider-location"><i class="fa fa-map-marker"></i>Quan 1, TP. Ho Chi Minh</p>
-            <span class="aa-top-slider-off">30% OFF</span>
-            <p class="aa-top-slider-price">3,456,000 vnd/month</p>
-            <a href="{% url 'listings' %}" class="aa-top-slider-btn">Read More <span class="fa fa-angle-double-right"></span></a>
-          </div>
-          <!-- / Top slider content --> $2500
-        </div>
-        <!-- / Top slider single slide -->
-         <!-- Top slider single slide -->
-        <div class="aa-top-slider-single">
-          <img src="{% static 'img/6.jpg' %}" alt="img">
-          <!-- Top slider content -->
-          <div class="aa-top-slider-content">
-            <span class="aa-top-slider-catg">Blue House</span>
-            <h2 class="aa-top-slider-title">345 square meters </h2>
-            <p class="aa-top-slider-location"><i class="fa fa-map-marker"></i>Quan 1, TP. Ho Chi Minh</p>
-            <span class="aa-top-slider-off">30% OFF</span>
-            <p class="aa-top-slider-price">3,456,000 vnd/month</p>
-            <a href="/1" class="aa-top-slider-btn">Read More <span class="fa fa-angle-double-right"></span></a>
-          </div>
-          <!-- / Top slider content -->
-        </div>
-        <!-- / Top slider single slide -->
+        {%endfor%}
       </div>
     </div>
   </section>
@@ -158,7 +98,6 @@
                     </select>
                   </div>
                 </div>
-
                 <div class="col-md-2">
                   <div class="aa-single-advance-search">
                     <select name="area" >
@@ -206,14 +145,13 @@
                   <h2>Introdure</h2>
                   <span></span>
                 </div>
-                <p>Chúng tôi biết bạn có rất nhiều lựa chọn, nhưng RentalHouse tự hào là trang web đứng top Localhost về các từ khóa: cho thuê phòng trọ, nhà trọ, thuê nhà nguyên căn, cho thuê căn hộ, cho thuê mặt bằng...Vì vậy tin của bạn đăng trên website sẽ tiếp cận được với nhiều khách hàng hơn, do đó giao dịch nhanh hơn, tiết kiệm chi phí hơn
-  
+                <p style= "font-size:16px">We know you have a lot of options, but RentalHouse is proud to be the leading website for Localhost with keywords: room rental, motel, whole house rental, apartment rental, space rental... Thanks to that Your information posted on the website will reach more customers, so transactions are faster and more cost-effective.
                 </p>                  
                 <ul>
-                  <li>4+ Thành viên</li>
-                  <li>10+ Tin đăng</li>
-                  <li>25+ Lượt truy cập/ tháng</li>                    
-                  <li>96+ Lượt xem/ tháng</li>
+                  <li>4+ Nember</li>
+                  <li>10+ Post</li>
+                  <li>25+ Access/ month</li>                    
+                  <li>96+ View/ month</li>
                 </ul>
               </div>
             </div>

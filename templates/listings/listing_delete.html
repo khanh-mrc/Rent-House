@@ -7,22 +7,53 @@
 <!-- SCROLL TOP BUTTON -->
 <a class="scrollToTop" href="#"><i class="fa fa-angle-double-up"></i></a>
 <!-- END SCROLL TOP BUTTON -->
-<br>
 <div class="row">
     <div class="col-md-6">
         <div class="card card-body">
-            <p>Are you sure want to delete "{{item}}"</p>
+            <h4 style="color:red;"><strong>Are you sure want to delete "{{item}}"</strong></h4>
             <form action="{%url 'delete' item.id%}" method="POST">
                 {% csrf_token %}
-                <p>Are you sure want to delete "{{item}}"</p>
-                <a class="btn btn-warning" href="{% url 'home' %}">Cancel</a>
-                <input class="btn btn-danger" type="submit" name="Comfirm">
+                <h4 style="color:red;">Are you sure want to delete "{{item}}"</h4>
+                <button style="margin-bottom:10px;" class="btn-danger" type="submit" name="Comfirm" >
+                    Delete
+                </button>
+                <a href="{% url 'dashboard' %}">
+                    <button type="button" class="btn-primary btn-block" >
+                        Cancel
+                    </button>
+                </a>
+                
             </form>
         </div>
-
     </div>
 
 </div>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+<br>
+<br>
+<br>
+
+
 
 
 </body>

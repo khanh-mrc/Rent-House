@@ -79,12 +79,12 @@ bedroom_choices = {
 
 price_choices = {
   '1500000':'dưới 1.5 triệu',
-  '200000':'dưới 2 triệu',
-  '3000000':'dưới 1 triệu',
+  '2000000':'dưới 2 triệu',
+  '3000000':'dưới 3 triệu',
   '5000000':'dưới 5 triệu',
   '7000000':'dưới 7 triệu',
   '10000000':'dưới 10 triệu',
-  '999999999999':'trên 10 triệu',
+  '10000001':'trên 10 triệu',
 }
 
 price_choices1 = {

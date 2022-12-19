@@ -44,12 +44,12 @@ def contact(request):
         print(lessor_email)
         send_mail(
             "You have a rental request from Rental Home",
-            'There has been a request for Property: '+ listing  + 
-            '\nFrom: '+ 
-            '\nName: ' + name +
-            '\nEmail: ' + email+
-            '\nPhone Number: '+phone +
-            '\nMessages: ' +message+
+            'There has been a request for your Property: '+ listing  + 
+            '\nInfo: '+ 
+            '\n   Name: ' + name +
+            '\n   Email: ' + email+
+            '\n   Phone Number: '+phone +
+            '\n   Messages: ' +message+
             "\n. Sign in to your account management for more info.",
             "Rental Home <rentalhouses15@gmail.com>",
             [lessor_email],

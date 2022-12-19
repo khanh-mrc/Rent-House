@@ -18,7 +18,7 @@ def listing_dashboard(request):
     listings=Listing.objects.filter(lessor=request.user.Profile).order_by('-list_date')
     user_contacts = Contact.objects.filter(user_id = request.user.id).order_by('-contact_date')
     lessor_contacts = Contact.objects.filter(lessor_id = request.user.id).order_by('-contact_date')
-    paginator = Paginator(listings,11)
+    paginator = Paginator(listings,12)
     page = request.GET.get('page')
     paged_listings = paginator.get_page(page)
     context={
@@ -87,7 +87,6 @@ def listing_list(request):
     paged_listings = paginator.get_page(page)
     context={
         'listings':paged_listings,
-        'listings':listings,
         "city_choices": city_choices,
         "price_choices":price_choices,
         "area_choices":area_choices,
@@ -118,27 +117,28 @@ def search(request):
     if 'keywords' in request.GET:
         keywords = request.GET['keywords']
         if keywords:
-            queryset_list = queryset_list.filter(address__icontains=keywords) |  queryset_list.filter(description__icontains=keywords) | queryset_list.filter(title__icontains=keywords)
+            queryset_list = queryset_list.filter(address__icontains=keywords) |  queryset_list.filter(description__icontains=keywords) | queryset_list.filter(title__icontains=keywords) | queryset_list.filter(city__icontains=['keywords'])
     
     # city 
     if 'city' in request.GET:
         city = request.GET['city']
         if city:
             queryset_list = queryset_list.filter(city__iexact = city)
-
+     # price 
+    if 'price' in request.GET:
+        price = request.GET['price']
+        if price:
+                queryset_list = queryset_list.filter(price__lte = price)
     # area 
     if 'area' in request.GET:
         area = request.GET['area']
         if area:
-            queryset_list = queryset_list.filter(area__lte = area)
+                queryset_list = queryset_list.filter(area__lte = area)
+
     
-    # price 
-    if 'price' in request.GET:
-        price = request.GET['price']
-        if price:
-            queryset_list = queryset_list.filter(price__lte= price)
+   
     #Page
-    paginator = Paginator(queryset_list,6)
+    paginator = Paginator(queryset_list,12)
     page = request.GET.get('page')
     paged_listings = paginator.get_page(page)
  
