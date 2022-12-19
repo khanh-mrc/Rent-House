@@ -87,7 +87,7 @@
                   <td>{{contact.lessor_phone}}</td>
                   <td>{{contact.contact_date}}</td>
                   <td>
-                    <a class="btn btn-light" data-toggle="modal" data-target="#detailsend">View Detail</a>
+                    <a class="btn btn-light" data-toggle="modal" data-target="#detailrequestsnd-{{forloop.counter}}">View Detail</a>
                   </td>
                 </tr>
               {% endfor %}
@@ -100,7 +100,7 @@
       </div>
     </div>
   </section>
-
+  {% include 'modal/send_detail.html'%}
   <!--Contact you recived-->
   <section id="dashboard" class="py-4">
     <div class="container">
@@ -128,7 +128,7 @@
                   <td>{{contact.phone}}</td>
                   <td>{{contact.contact_date}}</td>
                   <td>
-                    <a class="btn btn-light" data-toggle="modal" data-target="#detailrequestrc">View Detail</a>
+                    <a class="btn btn-light" data-toggle="modal" data-target="#detailrequestrc-{{forloop.counter}}">View Detail</a>
                   </td>
                 </tr>
                 
@@ -142,7 +142,8 @@
       </div>
     </div>
   </section>
-<!--Modal Detail request recieved-->
+ {% include 'modal/received_detail.html'%}
+<!--Modal Detail request recieved
 <div class="modal fade" id="detailrequestrc" role="dialog">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -175,7 +176,7 @@
     </div>
   </div>
 </div>
-  <!-- / Modal Detail request -->
+  / Modal Detail request -->
   
 
 {% endblock %}

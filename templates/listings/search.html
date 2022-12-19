@@ -5,82 +5,6 @@
 
 {% block content %}
 
- <!-- Advance Search -->
- <section id="aa-advance-search" style="margin-top: 110px;margin-bottom:10px; ">
-    <div container>
-      <div class="aa-advance-search-area" >
-        <form action="{% url 'search' %}" style="background-color:gainsboro;opacity: 1>
-          <div class="form">
-           <div class="aa-advance-search-top">
-             <div class="row">
- 
-               <div class="col-md-4">
-                 <div class="aa-single-advance-search">
-                   <label class="sr-only">Keywords</label>
-                   <input type="text" name="keywords" class="form-control" placeholder="Keyword (address, describe, etc)">
-                 </div>
-               </div>
-               
-               <div class="col-md-2">
-                 <div class="aa-single-advance-search">
-                   <select name="city" >
-                    <option selected="true" value="">City (All)</option>
-                    {% for key,value in city_choices.items %}
-                      <option value="{{ key }}"
-                      {% if key == values.city %}
-                        selected
-                      {% endif %}>{{ value }}
-                      </option>
-                    {% endfor %}
-                   </select>
-                 </div>
-               </div>
-                 
-                 <div class="col-md-2">
-                   <div class="aa-single-advance-search">
-                     <select name="price" >
-                      <option selected="true" value="">Price (All)</option>
-                      {% for key,value in price_choices.items %}
-                        <option value="{{ key }}"
-                        {% if key == values.price %}
-                          selected
-                        {% endif %}>{{ value }}
-                        </option>
-                      {% endfor %}
-                     </select>
-                   </div>
-                 </div>
- 
-                 <div class="col-md-2">
-                   <div class="aa-single-advance-search">
-                     <select name="area" >
-                      <option selected="true" value="">Area (All)</option>
-                      {% for key,value in area_choices.items %}
-                        <option value="{{ key }}"
-                        {% if key == values.area %}
-                          selected
-                        {% endif %}>{{ value }}
-                        </option>
-                      {% endfor %}
-                     </select>
-                   </div>
-                 </div>
- 
-                 <div class="col-md-2">
-                   <div class="aa-single-advance-search">
-                     <button class="aa-search-btn" type="submit">Search</button>
-                   </div>
-                 </div>
-       
-             </div>  
-           </div>
-         </div>
-       </form>
-      </div>
-    </div>
-  </section>
-  <hr>
-  <!-- / Advance Search -->
 
   <!-- Breadcrumb -->
   <section id="bc" class="mt-3">
@@ -91,12 +15,91 @@
             <a href="{% url 'home' %}">
               <i class="fas fa-home"></i> Home</a>
           </li>
-          <li class="breadcrumb-item active"> Browse Listings</li>
+          <li class="breadcrumb-item active"> Featured Listings</li>
         </ol>
       </nav>
     </div>
   </section>
   <!-- Breadcrumb -->
+
+
+  <!-- Search -->
+  <section id="aa-advance-search"  style="margin-top:95px; ">
+    <div class="container">
+      <div class="aa-advance-search-area" >
+        <form action="{% url 'search' %}" style="background-color:gainsboro;opacity: 1>
+         <div class="form">
+          <div class="aa-advance-search-top">
+            <div class="row">
+
+              <div class="col-md-4">
+                <div class="aa-single-advance-search">
+                  <label class="sr-only">Keywords</label>
+                  <input type="text" name="keywords" class="form-control" placeholder="Keyword (address, describe, etc)">
+                </div>
+              </div>
+              
+              <div class="col-md-2">
+                <div class="aa-single-advance-search">
+                  <select name="city" >
+                   <option selected="true" value="" >City (All)</option>
+                   {% for key,value in city_choices.items %}
+                     <option value="{{ key }}"
+                     {% if key == values.city %}
+                       selected
+                     {% endif %}>{{ value }}
+                     </option>
+                   {% endfor %}
+                  </select>
+                </div>
+              </div>
+                
+                <div class="col-md-2">
+                  <div class="aa-single-advance-search">
+                    <select name="price" >
+                     <option selected="true" value="">Price (All)</option>
+                     {% for key,value in price_choices.items %}
+                       <option value="{{ key }}"
+                       {% if key == values.price %}
+                         selected
+                       {% endif %}>{{ value }}
+                       </option>
+                     {% endfor %}
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-md-2">
+                  <div class="aa-single-advance-search">
+                    <select name="area" >
+                     <option selected="true" value="">Area (All)</option>
+                     {% for key,value in area_choices.items %}
+                       <option value="{{ key }}"
+                       {% if key == values.area %}
+                         selected
+                       {% endif %}>{{ value }}
+                       </option>
+                     {% endfor %}
+                    </select>
+                  </div>
+                </div>
+
+                <div class="col-md-2">
+                  <div class="aa-single-advance-search">
+                    <button class="aa-search-btn" type="submit">Search</button>
+                  </div>
+                </div>
+      
+            </div>  
+          </div>
+        </div>
+      </form>
+      </div>
+    </div>
+  </section>
+  <!-- /  Search -->
+
+
    <!-- Listings -->
   <section id="listings" class="py-4">
     <div class="container">

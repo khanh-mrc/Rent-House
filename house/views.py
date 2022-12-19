@@ -86,7 +86,12 @@ def listing_list(request):
     page = request.GET.get('page')
     paged_listings = paginator.get_page(page)
     context={
-        'listings':paged_listings
+        'listings':paged_listings,
+        'listings':listings,
+        "city_choices": city_choices,
+        "price_choices":price_choices,
+        "area_choices":area_choices,
+        "bedroom_choices":bedroom_choices,
     }
     return render(request, "listings/listings.html",context)
 
@@ -136,7 +141,7 @@ def search(request):
     paginator = Paginator(queryset_list,6)
     page = request.GET.get('page')
     paged_listings = paginator.get_page(page)
-
+ 
     context =  {
         
         "city_choices": city_choices,

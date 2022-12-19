@@ -9,7 +9,6 @@
             <p class="lead text-muted">Here you can remove or view the favourites posts you have added</p>
         </div>
     </section>
-    
     <div class="row">
         {% if favourites %}
                 {% for listing in favourites %}
@@ -40,8 +39,14 @@
                     <a href="{% url 'listing' listing.pk %}" class="aa-secondary-btn">View Details</a>
                   </div>
                 </div>
-                <div id="favourite-section"><a href="{% url 'favourite_add' listing.pk %}"
-                    class="btn btn-outline-primary">Remove</a></div>
+                
+                <div>
+                 <a href="{% url 'favourite_add' listing.pk %}" class="">
+                    <button type="button" class="btn btn-danger" >
+                    <i class="" style="font-size:12px; color:#fff;text-shadow: 0 0 10px #FF0000	;"aria-hidden="true">Remove</i>
+                    </button>
+                  </a>
+                </div>
               </article>
               </div>  
             {% endfor%}
