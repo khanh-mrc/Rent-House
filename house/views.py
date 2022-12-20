@@ -47,7 +47,7 @@ def listing_update(request, pk):
         form = ListingForm(request.POST,request.FILES, instance= listing)
         if form.is_valid():
             form.save()
-            return redirect('/')
+            return redirect('/dashboard')
     context={
         'form': form
     }
@@ -62,15 +62,11 @@ def listing_create(request):
             instance = form.save(commit=False)
             instance.lessor = request.user.Profile
             instance.save()
-            return redirect('/listings')
+            return redirect('/dashboard')
 
     Profile = request.user.Profile
     form1 = ProfileForm(instance=Profile)
-    if request.method == "POST":
-        form1 = ProfileForm(request.POST, request.FILES,instance=Profile)
-        if form1.is_valid():
-            form1.save()
-            #return redirect('/listings')
+
     context = {
         'form':form,
         'form1':form1
