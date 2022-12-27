@@ -15,7 +15,7 @@ from accounts.forms import *
 
 @login_required(login_url='login' )
 def listing_dashboard(request):
-    listings=Listing.objects.filter(lessor=request.user.Profile).order_by('-list_date')
+    listings=Listing.objects.filter(lessor=request.user.Profile).order_by('-id')
     user_contacts = Contact.objects.filter(user_id = request.user.id).order_by('-contact_date')
     lessor_contacts = Contact.objects.filter(lessor_id = request.user.id).order_by('-contact_date')
     paginator = Paginator(listings,12)
@@ -26,7 +26,7 @@ def listing_dashboard(request):
         'contacts': user_contacts,
         'contactsrc': lessor_contacts,
     }
-    return render(request, "accounts/dashboard.html",context)
+    return render(request, "accounts/dashboard1.html",context)
 
 @login_required(login_url='login' )
 def listing_delete(request, pk):
