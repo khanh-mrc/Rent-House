@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.humanize',
+    'django.contrib.postgres',
     'accounts',
     'home',
     'house',
@@ -81,6 +82,7 @@ WSGI_APPLICATION = 'webapp.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -88,7 +90,39 @@ DATABASES = {
     }
 }
 
+DATABASES = {
+'default': {
+'ENGINE': 'django.db.backends.postgresql_psycopg2',
+'NAME': 'RentalHouse',
+'USER': 'postgres',
+'PASSWORD': 'admin',
+'HOST': 'localhost',
+'PORT': '5432',
+}
+}
 
+#Using Database Live Sever in Railway.app
+DATABASES = {
+'default': {
+'ENGINE': 'django.db.backends.postgresql_psycopg2',
+'NAME': 'railway',
+'USER': 'postgres',
+'PASSWORD': 'xjAqVmeCuUquIg0h0YXX',
+'HOST': 'containers-us-west-170.railway.app',
+'PORT': '6991',
+}
+}
+'''
+DATABASES = {
+'default': {
+'ENGINE': 'django.db.backends.postgresql_psycopg2',
+'NAME': 'neondb',
+'USER': 'khanhpham.2004.02',
+'PASSWORD': 'CEARHNkK7D4O',
+'HOST': 'ep-royal-butterfly-714521.ap-southeast-1.aws.neon.tech',
+'PORT': '5432',
+}
+}
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
 

@@ -1,0 +1,187 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize%}
+{% block title %}Dashboard {% endblock %}
+{% block content %}
+<!--
+<div class="jumbotron text-center">
+    <h3 class="display-4">User Dashboard</h3>
+    <p class="lead">Manage your account</p>
+</div>
+-->
+  <!-- Breadcrumb -->
+  <section id="bc" class="mt-4">
+    <div class="container">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="{% url 'dashboard' %}">
+              <i class="fas fa-home"></i> Home</a>
+          </li>
+          <li class="breadcrumb-item active">Management</li>
+        </ol>
+      </nav>
+    </div>
+  </section>
+
+<!--Your POST-->
+  <section id="dashboard/yourhouse" plass="py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+            <!--
+          <button type="button" class="btn btn-primary">Your Post</button>
+          <button type="button" class="btn btn-secondary">Request you send</button>
+          <button type="button" class="btn btn-secondary">Request you received</button>
+            -->
+          <h2>Your Post</h2>
+          <div class="card card-body">
+            <table class="table">
+              <tr>
+                <th>#ID</th>
+                <th>Product</th>
+                <th>Price ( vnd/month )</th>
+                <th>Status</th>
+                <th></th>
+                <th></th>
+              </tr>
+
+              {% for i in listings %}
+              <tr>
+                <td>{{i.id}}</td>
+                <td><a style="color:blue" href="{%  url 'listing' i.id%}">{{i.title}}</a></td>
+                <td>{{i.price | intcomma}}</td>
+                <td>{{i.status}}</td>
+                <td><a style="color:blue" href="{%  url 'update' i.id%}">Update</a></td>
+                <td><a style= "color:blue" href="{%  url 'delete' i.id%}">Delete</a></td>
+              </tr>
+              {% endfor %}
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+<!--/Your POST-->
+
+  <!--Contact you recived-->
+  <section id="dashboard" class="py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Request you received </h2>
+          {% if contactsrc %}
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#ID</th>
+                <th scope="col">Property</th>
+                <th>Sender</th>
+                <th>Phone</th>
+                <th>Date</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for contact in contactsrc %}
+                <tr>
+                  <td>{{ contact.id }}</td>
+                  <td><a style="color:blue" href="{% url 'listing' contact.listing_id %}">{{contact.listing}}</a></td>
+                  <td>{{contact.name}}</td>
+                  <td>{{contact.phone}}</td>
+                  <td>{{contact.contact_date}}</td>
+                  <td>
+                    <a class="btn btn-light" data-toggle="modal" data-target="#detailrequestrc-{{forloop.counter}}">View Detail</a>
+                  </td>
+                </tr>
+                
+              {% endfor %}
+            </tbody>
+          </table>
+          {% else %}
+            <p>You have not received any request yet!</p>
+          {% endif%}
+        </div>
+      </div>
+    </div>
+  </section>
+ {% include 'modal/received_detail.html'%}
+
+ <!--Contact you send-->
+ <section id="dashboard" class="py-4">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h2>Request you have send</h2>
+          {% if contacts %}
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">#ID</th>
+                <th scope="col">Property</th>
+                <th>Lessor</th>
+                <th>Phone</th>
+                <th>Date</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for contact in contacts %}
+                <tr>
+                  <td>{{ contact.id }}</td>
+                  <td><a style="color:blue" href="{% url 'listing' contact.listing_id %}">{{contact.listing}}</a></td>
+                  <td>{{contact.lessor_name}}</td>
+                  <td>{{contact.lessor_phone}}</td>
+                  <td>{{contact.contact_date}}</td>
+                  <td>
+                    <a class="btn btn-light" data-toggle="modal" data-target="#detailrequestsnd-{{forloop.counter}}">View Detail</a>
+                  </td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+          {% else %}
+            <p>You have not any request.</p>
+          {% endif%}
+        </div>
+      </div>
+    </div>
+  </section>
+  {% include 'modal/send_detail.html'%}
+<!--Modal Detail request recieved
+<div class="modal fade" id="detailrequestrc" role="dialog">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="inquiryModalLabel">Request Received</h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span>&times;</span>
+        </button>
+      </div>
+      <h1>Succesfully</h1>
+      <div class="modal-body">
+          <div class="form-group">
+            <label for="name" class="col-form-label">Name: {{contact.name}} </label>
+          </div>
+          <div class="form-group">
+            <label for="email" class="col-form-label">Email: {{contact.email}}</label>
+          </div>
+          <div class="form-group">
+            <label for="phone" class="col-form-label">Phone: {{contact.phone}}</label>
+          </div>
+          <div class="form-group">
+            <label for="message" class="col-form-label">Message: {{contact.message}}</label>
+          </div>
+          <hr>
+          <div class="modal-footer">
+          <button type="button" class="btn btn-danger ">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+  / Modal Detail request -->
+  
+
+{% endblock %}

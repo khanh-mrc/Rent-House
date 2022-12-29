@@ -26,7 +26,7 @@ def listing_dashboard(request):
         'contacts': user_contacts,
         'contactsrc': lessor_contacts,
     }
-    return render(request, "accounts/dashboard1.html",context)
+    return render(request, "accounts/dashboard.html",context)
 
 @login_required(login_url='login' )
 def listing_delete(request, pk):
@@ -113,28 +113,45 @@ def search(request):
     if 'keywords' in request.GET:
         keywords = request.GET['keywords']
         if keywords:
-            queryset_list = queryset_list.filter(address__icontains=keywords) |  queryset_list.filter(description__icontains=keywords) | queryset_list.filter(title__icontains=keywords) | queryset_list.filter(city__icontains=['keywords'])
+            queryset_list = queryset_list.filter(address__unaccent__icontains=keywords) |  queryset_list.filter(description__unaccent__icontains=keywords) | queryset_list.filter(title__unaccent__icontains=keywords) | queryset_list.filter(city__unaccent__icontains=['keywords'])
     
     # city 
     if 'city' in request.GET:
         city = request.GET['city']
         if city:
             queryset_list = queryset_list.filter(city__iexact = city)
+    
      # price 
     if 'price' in request.GET:
         price = request.GET['price']
+        print(price)
         if price:
+            if price == '10000000':
+                print(price)
+                queryset_list = queryset_list.filter(price__gte = price)
+                print("tren 10 tr")
+            else:
                 queryset_list = queryset_list.filter(price__lte = price)
-    # area 
+                print("duoi 10 tr")
+            
+    # area
     if 'area' in request.GET:
         area = request.GET['area']
+        print(area)
         if area:
-                queryset_list = queryset_list.filter(area__lte = area)
+            if area == '90':
+                print(area)
+                queryset_list = queryset_list.filter(area__gte = area)
+                print("tren 90 m2")
+            else:
+                    queryset_list = queryset_list.filter(area__lte = area)
 
-    
-   
+     
+              
+
+
     #Page
-    paginator = Paginator(queryset_list,12)
+    paginator = Paginator(queryset_list,20)
     page = request.GET.get('page')
     paged_listings = paginator.get_page(page)
  
