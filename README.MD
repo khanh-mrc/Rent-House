@@ -26,6 +26,7 @@ pip install Pillow
 pip install django-crispy-forms 
 pip install psycopg2 
 pip install django_cloudinary_storage 
+pip install whitenoise 
 ```
 ##### Run:
 ```
