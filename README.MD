@@ -5,7 +5,7 @@
 - 20521456	Phạm Văn Khánh 
 - 20521093	Trần Gia Băng 
 -------------------------------------------------
-- Deloy:  [GitHub Pages](https://pages.github.com/)
+- Deloy:  [Rental House](https://rentalhouse.up.railway.app/)
 - Database: Postgresql : using live server https://console.neon.tech/ 
 - Media upload: Cloudinary
 ----------------------------------------------- 
