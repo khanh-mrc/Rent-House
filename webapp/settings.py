@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 from pathlib import Path
+import cloudinary_storage
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -46,6 +47,8 @@ INSTALLED_APPS = [
     'contacts',
     #'django-filters',
     'crispy_forms',
+    'cloudinary',
+    'cloudinary_storage',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [
@@ -113,6 +116,7 @@ DATABASES = {
 }
 }
 '''
+#using database live server Neon.tect
 DATABASES = {
 'default': {
 'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -175,3 +179,11 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'rentalhouses15@gmail.com' #pwd: s15rentalhouse
 EMAIL_HOST_PASSWORD = 'c e y s w d w n p f x g c m n z'
 EMAIL_USE_TLS = True 
+
+#Cloudinary
+CLOUDINARY_STORAGE = { 
+  'CLOUD_NAME' : "dpvpj6r7e", 
+  'API_KEY' : "915154582443464", 
+  'API_SECRET' : "s1OuoSpHbZKNMpYMCILUQEvizxc",
+}
+DEFAULT_FILE_STORAGE= 'cloudinary_storage.storage.MediaCloudinaryStorage'
