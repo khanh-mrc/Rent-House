@@ -6,7 +6,7 @@
 - 20521093	Trần Gia Băng 
 -------------------------------------------------
 - Deploy:  [Rental House](https://rentalhouse.up.railway.app/)
-- Database: Postgresql : using live server https://console.neon.tech/ 
+- Database: Postgresql : using live server [Neon.tech](https://console.neon.tech/) 
 - Media upload: Cloudinary
 ----------------------------------------------- 
 ##### Super user:  
