@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+CSRF_TRUSTED_ORIGINS = ['https://rentalhouse.up.railway.app']
 
 
 
@@ -192,7 +193,5 @@ CLOUDINARY_STORAGE = {
   'API_SECRET' : "s1OuoSpHbZKNMpYMCILUQEvizxc",
 }
 DEFAULT_FILE_STORAGE= 'cloudinary_storage.storage.MediaCloudinaryStorage'
-#Trush  CSRF
-CSRF_TRUSTED_ORIGINS = [
-    'https://rentalhouse.up.railway.app/'
-]
+
+
