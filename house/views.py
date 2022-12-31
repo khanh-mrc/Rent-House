@@ -99,9 +99,12 @@ def listing_retrieve(request,listing_id):
         fav = True
 
     listings2=Listing.objects.order_by('-list_date')[:6]
+    other_result=Listing.objects.all()
+    other_result=other_result.filter(address__unaccent__icontains=listing.address) |  other_result.filter(description__unaccent__icontains=listing.description) | other_result.filter(title__unaccent__icontains=listing.title) | other_result.filter(city__unaccent__icontains=listing.city).order_by('price','area','-list_date')[:6]
     context={
         "listing":listing,
         "listings2": listings2,
+        "other_result": other_result,
         'fav': fav
     }
     return render(request, "listings/detail.html",context)

@@ -156,7 +156,7 @@
                 </div>
               </div>
             </aside>
-        
+            
              <!--Favourite-->
              {% if request.user.is_authenticated %}
              {% if fav %}
@@ -186,9 +186,38 @@
              </div>
              {% endif %}
              
-
-            <button class="btn-info btn-block btn-lg" style="margin-top:10px;" data-toggle="modal" data-target="#contactLessor">Send request</button>
-          </div>
+             <button class="btn-info btn-block btn-lg" style="margin-top:10px;" data-toggle="modal" data-target="#contactLessor">Send request</button>
+             <br>
+             <!--Other  Result-->
+            <aside class="aa-properties-sidebar" style="border-radius: 2%;">
+              <div class="aa-properties-single-sidebar">
+                <h4 style="font-size:17px;">Other Search Result</h4>
+                {% if other_result%}
+                {% for listing in other_result %}
+                <div class="media">
+                  <div class="media-left">
+                    
+                    <a href="{% url 'listing' listing.pk%}">
+                      <img class="media-object" src="{{listing.photo_main.url }}" alt="img" width="170" height="120">
+                    </a>
+                  </div>
+                  <div class="media-body">
+                    
+                    <h4 class="media-heading" style="font-size:15px;font-color: green;border:20px;"><a  href="{% url 'listing' listing.pk%}"><strong>{{listing.title}}</strong></a></h4>
+                    <h5 style="font-size:14px;">Address: {{listing.address}}, {{listing.city}}</h5>                
+                    <span style="font-size:14.5px;">{{listing.price | intcomma}}vnd/Month</span>
+                  </div>              
+                </div>
+                {%endfor%}
+                {% else %}
+                  <div class="col-md-12">
+                    <p>There are no similar search results.</p>
+                  </div>
+                {% endif %}
+              </div>
+            </aside>
+             <!--/Other Result-->
+            </div>
       </div>
     </div>
   </section>
