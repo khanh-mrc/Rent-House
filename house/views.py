@@ -9,7 +9,12 @@ from .forms import ListingForm
 from accounts.models import Profile
 from contacts.models import Contact
 from accounts.forms import *
+from django.db.models import Q
 
+from django.contrib.auth import get_user_model
+from django.contrib.auth.models import User, Permission
+from django.contrib.contenttypes.models import ContentType
+from .decorators import *
 @login_required(login_url='login' )
 
 
@@ -31,15 +36,21 @@ def listing_dashboard(request):
 @login_required(login_url='login' )
 def listing_delete(request, pk):
     listing=Listing.objects.get(id=pk)
+    user=request.user
     if request.method== "POST":
-        listing.delete()
-        return redirect('/')
+        if listing.lessor.user.id==user.id:
+            print("Co Quyen")
+            listing.delete()
+            return redirect('/')
+        else:
+            print("Khong Co Quyen")
+            return redirect('404')
     context={
         'item': listing
     }
     return render(request, 'listings/listing_delete.html',context)
 
-@login_required(login_url='login' )
+@login_required
 def listing_update(request, pk):
     listing=Listing.objects.get(id=pk)
     form=ListingForm(instance=listing)
@@ -94,12 +105,14 @@ def listing_retrieve(request,listing_id):
     listing= Listing.objects.get(pk=listing_id)
 
     fav = bool
+    ex_id = listing.pk
 
     if listing.favourites.filter(id=request.user.id).exists():
         fav = True
 
     listings2=Listing.objects.order_by('-list_date')[:6]
     other_result=Listing.objects.all()
+    other_result=Listing.objects.filter(~Q(id = ex_id))
     other_result=other_result.filter(address__unaccent__icontains=listing.address) |  other_result.filter(description__unaccent__icontains=listing.description) | other_result.filter(title__unaccent__icontains=listing.title) | other_result.filter(city__unaccent__icontains=listing.city).order_by('price','area','-list_date')[:6]
     context={
         "listing":listing,

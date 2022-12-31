@@ -11,6 +11,7 @@ from django.contrib.auth.views import PasswordChangeView
 from django.urls import reverse_lazy
 from contacts.models import Contact
 from house.models import Listing
+from .decorators import *
 #  Create your views here.
 
 @ login_required
@@ -62,7 +63,7 @@ def changepwd(request):
     }
     return render(request,'accounts/changepwd.html',context)
 
-
+@unauthenticated_user
 def loginPage(request):
     if request.method == 'POST':
         username = request.POST.get('username')
@@ -78,7 +79,8 @@ def loginPage(request):
         
     }
     return render(request,'accounts/login.html',context)
-
+    
+@unauthenticated_user
 def register(request):
     if request.method == "POST":
         first_name = request.POST['first_name']
