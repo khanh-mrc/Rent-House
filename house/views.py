@@ -10,7 +10,7 @@ from accounts.models import Profile
 from contacts.models import Contact
 from accounts.forms import *
 from django.db.models import Q
-
+from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.models import User, Permission
 from django.contrib.contenttypes.models import ContentType
@@ -73,6 +73,7 @@ def listing_create(request):
             instance = form.save(commit=False)
             instance.lessor = request.user.Profile
             instance.save()
+            messages.success(request,"Your Post has been created successfully !")
             return redirect('/dashboard')
 
     Profile = request.user.Profile

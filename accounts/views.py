@@ -57,7 +57,7 @@ def register(request):
                     last_name = last_name)
                     user.save()
                     
-                    messages.success(request,  'Account was created for ' + ' ' + username)
+                    messages.success(request,  'Account was created for ' + ' ' + username+'. Please login !')
                     return redirect(request.META.get('HTTP_REFERER'))
         else:
             messages.error(request,'Password and confirm password does not match')

@@ -180,14 +180,22 @@ MEDIA_URL = '/media/'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-
 # Email config
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'rentalhouses15@gmail.com' #pwd: s15rentalhouse
 EMAIL_HOST_PASSWORD = 'c e y s w d w n p f x g c m n z'
+#'m w v w o e v c r l b s y g u i'
 EMAIL_USE_TLS = True 
 
+'''
+# Email config
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'rentalhousex@gmail.com'
+EMAIL_HOST_PASSWORD = 'cgchiueymdmcicik'
+EMAIL_USE_TLS = True
+'''
 #Cloudinary
 CLOUDINARY_STORAGE = { 
   'CLOUD_NAME' : "dpvpj6r7e", 
