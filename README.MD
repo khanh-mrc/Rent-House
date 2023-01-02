@@ -11,7 +11,7 @@
 ----------------------------------------------- 
 ##### Super user: 
     * usr: admins 
-    * pwd: rentalhouse 
+    * pwd: ****** 
 ------------------- 
 ##### Install venv-django:  
 ```
