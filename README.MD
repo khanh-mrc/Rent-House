@@ -10,8 +10,8 @@
 - Media upload: Cloudinary
 ----------------------------------------------- 
 ##### Super user: 
-    * usr: admins 
-    * pwd: ******
+    * usr: admim
+    * pwd: ****** 
 ------------------- 
 ##### Install venv-django:  
 ```
