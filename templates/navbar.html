@@ -29,71 +29,107 @@
     </style>
 </head>
 <body>
+{% include 'modal/login.html' %}
+{% include 'modal/login_register.html'%}
+
+
 <div class="navbar navbar-expand-md " style="margin:-4.5px 0px; background-color: #161617; ">
     <a class="navbar-brand" style="margin-right:0px; color:green; margin:0px;"  href="{%url 'home'%}">Rental House</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" >
         <span class="navbar-toggler-icon"></span>
-      </button>
-                    <div class="navbar-collapse collapse" id="navbarSupportedContent">
-                        <ul class="navbar-nav " style="background-color:black;">
-                            <li class="nav-item active" style="margin-left: 10px;">
-                                <a class="nav-link active" href="{% url 'home' %}" style="color:white;font-size:18px">Home <span class="sr-only">(current)</span></a>
-                            </li>
-                            
-                            <li class="nav-item active" style="margin-left: 10px;">
-                                <a class="nav-link " href="{% url 'create'  %}" style="color:white;font-size:18px">Post</a>
-                            </li>
-                            {% if user.is_authenticated%}
-                            <li class="nav-item active" style="margin-left: 10px;">
-                                <a class="nav-link "  href="{% url 'dashboard' %}" style="color:white;font-size:18px">Management</a>
-                            </li>
-                            {% endif%}
-                            <li class="nav-item active" style="margin-left: 10px;">
-                                <a class="nav-link " href="{% url 'listings' %}" style="color:white;font-size:18px">Featured Listings</a>
-                            </li>
+    </button>
+    <div class="navbar-collapse collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav " style="background-color:black;">
+            <li class="nav-item active" style="margin-left: 10px;">
+                <a class="nav-link active" href="{% url 'home' %}" style="color:white;font-size:18px">Home <span class="sr-only">(current)</span></a>
+            </li>
+            
+            <li class="nav-item active" style="margin-left: 10px;">
+                <a class="nav-link " href="{% url 'create'  %}" style="color:white;font-size:18px">Post</a>
+            </li>
+            
+            {% if user.is_authenticated%}
+            <li class="nav-item active" style="margin-left: 10px;">
+                <a class="nav-link "  href="{% url 'dashboard' %}" style="color:white;font-size:18px">Management</a>
+            </li>
+            {% endif%}
+            <li class="nav-item active" style="margin-left: 10px;">
+                <a class="nav-link " href="{% url 'listings' %}" style="color:white;font-size:18px">Featured Listings</a>
+            </li>
 
-                            <li class="nav-item  active"style="margin-left: 10px; margin-right:45px;">
-                                <a class="nav-link" href="{% url 'about' %}" style="color:white;font-size:16px">About Us     </a>
-                            </li>
-                            
-                        </ul>
-                        
-                        <ul class="nav navbar-nav">
-                            <li>
-                                <form action="{% url 'search' %}" class="navbar-form">
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <input type="search" name="keywords" id="" placeholder="Search Anything Here..." class="form-control">
-                                            <!--
-                                            <span class="input-group-addon" type="submit"><span class="glyphicon glyphicon-search" type="submit"></span></span>
-                                            -->
-                                            <span class="input-group-addon">
-                                                <button class="glyphicon glyphicon-search" type="submit"></button>
-                                              </span>
-                                        </div>
-                                    </div>
-                                </form>
-                            </li>
-                        </ul>
-
-                        <ul class="nav navbar-right " style="margin-top:2px;">
-                            
-                            {% if user.is_authenticated %}
-                                <li class="nav-item " style="">
-                                    <a href="{% url 'favourite_list'%}" >
-                                        <i class="fa fa-heartbeat "  style="font-size:18px; color:red;text-shadow: 0 0 2px #fff;" aria-hidden="true"></i>
-
-                                    </a>
-                                </li>
-                                <li class="nav-item "><a style="color:#D0C9E4 ;" href="{% url 'profile' %}"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
-                                <li><a href="{% url 'logout' %}" style="color:#D0C9E4 ;"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
-                            {% else %}
-                                <li><a href="{% url 'login' %}" style="color:#D0C9E4 ;"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                                <li><a href="{% url 'register' %}"style="color:#D0C9E4 ;"><span class="glyphicon glyphicon-user"></span> Register</a></li>
-                            
-                            {%endif%}
-                        </ul>
+            <li class="nav-item  active"style="margin-left: 10px; margin-right:45px;">
+                <a class="nav-link" href="{% url 'about' %}" style="color:white;font-size:16px">About Us     </a>
+            </li>
+            
+        </ul>
+        
+        <ul class="nav navbar-nav">
+            <li>
+                <form action="{% url 'search' %}" class="navbar-form">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input type="search" name="keywords" id="" placeholder="Search Anything Here..." class="form-control">
+                            <!--
+                            <span class="input-group-addon" type="submit"><span class="glyphicon glyphicon-search" type="submit"></span></span>
+                            -->
+                            <span class="input-group-addon">
+                                <button class="glyphicon glyphicon-search" type="submit"></button>
+                              </span>
+                        </div>
                     </div>
+                </form>
+            </li>
+        </ul>
+
+        <ul class="nav navbar-right " style="margin-top:2px;">
+            
+            {% if user.is_authenticated %}
+                <li class="nav-item " style="">
+                    <a href="{% url 'favourite_list'%}" >
+                        <i class="fa fa-heartbeat "  style="font-size:18px; color:red;text-shadow: 0 0 2px #fff;" aria-hidden="true"></i>
+
+                    </a>
+                </li>
+                <li class="nav-item "><a style="color:#D0C9E4 ;" href="{% url 'profile' %}"><span class="glyphicon glyphicon-user"></span> Profile</a></li>
+                <li><a href="{% url 'logout' %}" style="color:#D0C9E4 ;"><span class="glyphicon glyphicon-log-out"></span> Log out</a></li>
+            {% else %}
+            <!--
+                <li><a href="{% url 'login' %}" style="color:#D0C9E4 ;"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a href="{% url 'register' %}"style="color:#D0C9E4 ;"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+            --> 
+                <li><a href="" data-toggle="modal" data-target="#loginModal2" href="{% url 'login' %}" style="color:#D0C9E4 ;"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li><a href=""data-toggle="modal" data-target="#registerModal2" style="color:#D0C9E4 ;"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+
+            {%endif%}
+            <!--
+            <li>
+                
+                <button type="button" class="btn btn-info btn-round" data-toggle="modal" data-target="#loginModal2">
+                    <span class="glyphicon glyphicon-log-in"></span> Login
+                </button>
+            </li>
+
+            <li>
+                <button type="button" class="btn btn-info btn-round" data-toggle="modal" data-target="#registerModal2">
+                    <span class="glyphicon glyphicon-user"></span> Register
+                </button>
+            </li>
+        -->
+
+                <!--
+                <button type="button" class="btn btn-info btn-round" data-toggle="modal" data-target="#loginModal">
+                  Login0
+                </button>   
+            
+                  <button type="button" class="btn btn-info btn-round" data-toggle="modal" data-target="#loginModal2">
+                    Login
+                  </button>
+                  <button type="button" class="btn btn-info btn-round" data-toggle="modal" data-target="#registerModal2">
+                    Register
+                  </button>
+                -->
+        </ul>
+    </div>       
              
-    </div>
+</div>
 </body>

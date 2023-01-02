@@ -12,7 +12,82 @@ from django.urls import reverse_lazy
 from contacts.models import Contact
 from house.models import Listing
 from .decorators import *
+
+from bootstrap_modal_forms.generic import BSModalLoginView,BSModalCreateView
+from .forms import CustomAuthenticationForm
+from .forms import CustomUserCreationForm
+
+class SignUpView(BSModalCreateView):
+    form_class = CustomUserCreationForm
+    template_name = '/signup.html'
+    success_message = 'Success: Sign up succeeded. You can now Log in.'
+    success_url = reverse_lazy('home')
 #  Create your views here.
+
+def Login(request):
+    if request.user.is_authenticated: 
+        pass
+    else: 
+        messages.info(request,"Please Login to access this pages!")
+        return HttpResponseRedirect('/')
+
+  
+@unauthenticated_user
+def register(request):
+    if request.method == "POST":
+        first_name = request.POST['first_name']
+        last_name = ''
+        username = request.POST['username']
+        email = request.POST['email']
+        password1 = request.POST['password1']
+        password2 = request.POST['password2']
+
+        if password1 == password2:
+            # Check username
+            if User.objects.filter(username = username).exists():
+                messages.error(request,username + ' ' +' already exists. Please try another username')
+                return redirect(request.META.get('HTTP_REFERER'))
+            else:
+                if User.objects.filter(email = email).exists():
+                    messages.error(request,'Email ' + ' ' + email +' ' +' already being used. Please try another email')
+                    return redirect(request.META.get('HTTP_REFERER'))
+                else:
+                    user = User.objects.create_user(username = username,
+                    password = password1,email=email,first_name = first_name,
+                    last_name = last_name)
+                    user.save()
+                    
+                    messages.success(request,  'Account was created for ' + ' ' + username)
+                    return redirect(request.META.get('HTTP_REFERER'))
+        else:
+            messages.error(request,'Password and confirm password does not match')
+            return redirect(request.META.get('HTTP_REFERER'))
+    else:
+        return redirect(request.META.get('HTTP_REFERER'))
+
+def LoginUser(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            #return HttpResponseRedirect('/')
+            #HttpResponseRedirect(request.path_info)
+        else: 
+            messages.error(request, 'Username or Password is Incorrect')
+            
+    context ={
+        
+    }
+    return redirect(request.META.get('HTTP_REFERER'))
+    #return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
+
+class CustomLoginView(BSModalLoginView):
+    authentication_form = CustomAuthenticationForm
+    template_name = 'modal/login1.html'
+    success_message = 'Success: You were successfully logged in.'
+    extra_context = dict(success_url=reverse_lazy('home'))
 
 @ login_required
 def favourite_list(request):
@@ -23,7 +98,7 @@ def favourite_list(request):
     }
     return render(request,'accounts/favourites.html',context)
 
-@ login_required
+
 def favourite_add(request, pk):
     post = get_object_or_404(Listing, id=pk)
     if post.favourites.filter(id=request.user.id).exists():
@@ -78,44 +153,11 @@ def loginPage(request):
     context ={
         
     }
-    return render(request,'accounts/login.html',context)
-    
-@unauthenticated_user
-def register(request):
-    if request.method == "POST":
-        first_name = request.POST['first_name']
-        last_name = request.POST['last_name']
-        username = request.POST['username']
-        email = request.POST['email']
-        password1 = request.POST['password1']
-        password2 = request.POST['password2']
-
-        if password1 == password2:
-            # Check username
-            if User.objects.filter(username = username).exists():
-                messages.error(request,'"'+username + '" already exists. Please try another username')
-                return redirect('register')
-            else:
-                if User.objects.filter(email = email).exists():
-                    messages.error(request,'Email "' + email+'" already being used. Please try another email')
-                    return redirect('register')
-                else:
-                    user = User.objects.create_user(username = username,
-                    password = password1,email=email,first_name = first_name,
-                    last_name = last_name)
-                    user.save()
-                    
-                    messages.success(request,  'Account was created for "'+ username +'"')
-                    return redirect('login')
-        else:
-            messages.error(request,'Password and confirm password does not match')
-            return redirect('register')
-    else:
-        return render(request,'accounts/register.html')
-
+    return render(request,'home/index.html',context)
+  
 def logoutUser(request):
     logout(request)
-    return redirect('login')
+    return redirect(request.META.get('HTTP_REFERER', 'redirect_if_referer_not_found'))
 
 
 

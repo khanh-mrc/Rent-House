@@ -9,9 +9,9 @@
 - Database: Postgresql : using live server [Neon.tech](https://console.neon.tech/) 
 - Media upload: Cloudinary
 ----------------------------------------------- 
-##### Super user:  
+##### Super user: 
     * usr: admins 
-    * pwd: admin 
+    * pwd: rentalhouse 
 ------------------- 
 ##### Install venv-django:  
 ```
@@ -26,7 +26,8 @@ pip install Pillow
 pip install django-crispy-forms 
 pip install psycopg2 
 pip install django_cloudinary_storage 
-pip install whitenoise 
+pip install whitenoise
+pip install django-bootstrap-modal-forms
 ```
 ##### Run:
 ```

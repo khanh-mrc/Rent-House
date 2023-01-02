@@ -7,7 +7,10 @@ from house.views import listing_dashboard
 
 
 urlpatterns = [
-    path('login/',views.loginPage,name = "login"),
+    path('signup/', views.SignUpView.as_view(), name='signup'),
+    #path('login/', views.Login, name='login'),
+    path('login/', views.LoginUser, name='login'),
+    #path('login/',views.loginPage,name = "login"),
     path('logout/',views.logoutUser,name = "logout"),
     path('register/',views.register,name = "register"), 
     path('dashboard/',listing_dashboard,name="dashboard"),

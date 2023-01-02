@@ -3,10 +3,10 @@ from django.shortcuts import render
 from house.choices import price_choices, bedroom_choices, area_choices, city_choices
 from house.models import Listing
 # Create your views here.
-def searchtest(request):
+def test(request):
     context={
     }
-    return render(request,'home/searchtest.html',context)
+    return render(request,'home/test.html',context)
 def home(request):
     listings = Listing.objects.order_by('-list_date')[:6]
     context =  {

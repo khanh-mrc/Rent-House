@@ -46,10 +46,12 @@ INSTALLED_APPS = [
     'home',
     'house',
     'contacts',
+    'widget_tweaks',
     #'django-filters',
     'crispy_forms',
     'cloudinary',
     'cloudinary_storage',
+    'bootstrap_modal_forms',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 MIDDLEWARE = [

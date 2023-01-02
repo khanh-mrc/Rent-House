@@ -19,32 +19,30 @@
                         <div class="form-group">
                             <label class="form-label" for="password">Password</label>
                             <input class="form-control" type="password" name="password" class="form-control" required>
-                            <div class="invalid-feedback">
-                                Please enter your password
-                            </div>
+                          
                         </div>
                         <div class="form-group form-check">
                             <input class="form-check-input" type="checkbox" id="check">
                             <label class="form-check-label" for="check">Remember me</label>     
                         </div>
-                        <input class="btn btn-success w-100" type="submit" value="Login">
+
+                        <button type="submit" class="btn btn-info">Login</button>
 
                         <div>
                             {% for messages in messages %}
                             <p id="messages" style="color:red;">{{messages}}</p>
                             {% endfor %}
-                            </div>
+                        </div>
                             
-                            <div class="mt-4 ml-auto">
+                            <div class="mt-4 ml-auto" style="margin-top:7px;">
                                 <div class="align-self-center">
                                     Don't have an account? 
                                     <a href="{% url 'register' %}" 
                                     style="color: blue;font-size:13px;"> Register</a>
                                 </div>
                             </div>
-
-                            <div class="mt-4 ml-auto">
-                                <div class="align-self-center">
+                            <div class="mt-4 ml-auto" style="margin-top:7px;">
+                                <div class="center">
                                     <a href="{% url 'reset_password' %}" 
                                     style="color: blue;font-size:13px;"> Forgot your password?</a>
                                 </div>

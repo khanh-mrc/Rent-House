@@ -178,11 +178,17 @@
              {% endif %}
              {% else %}
              <div>
-               <a href="{% url 'register' %}" class="">
+              
+                <button type="button" data-toggle="modal" data-target="#loginModal2" class="btn btn-success btn-block btn-lg" >
+                  <i class="fa fa-heart-o" style="font-size:18px; color:#fff;text-shadow: 0 0 10px #FF0000	;"aria-hidden="true"> Favourite</i>
+                </button>
+              <!--
+               <a data-toggle="modal" data-target="#loginModal2" href="{% url 'login' %}">
                 <button type="button" class="btn btn-success btn-block btn-lg" >
                   <i class="fa fa-heart-o" style="font-size:18px; color:#fff;text-shadow: 0 0 10px #FF0000	;"aria-hidden="true"> Favourite</i>
                 </button>
                </a>
+              -->
              </div>
              {% endif %}
              
