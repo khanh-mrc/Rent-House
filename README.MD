@@ -8,6 +8,7 @@
 - Deploy:  [Rental House](https://rentalhouse.up.railway.app/)
 - Database: Postgresql : using live server [Neon.tech](https://console.neon.tech/) 
 - Media upload: Cloudinary
+- Chat GPT: OpenAi API
 ----------------------------------------------- 
 ##### Super user: 
     * usr: admim
@@ -22,12 +23,7 @@ python -m pip install django
 
 ##### Install Lib: 
 ```
-pip install Pillow 
-pip install django-crispy-forms 
-pip install psycopg2 
-pip install django_cloudinary_storage 
-pip install whitenoise
-pip install django-bootstrap-modal-forms
+pip install -r requirements.txt
 ```
 ##### Run:
 ```
