@@ -10,7 +10,7 @@ def contact(request):
         listing = request.POST['listing']
         name = request.POST['name']
         email = request.POST['email']
-        phone = request.POST['phone']
+        phone = request.POST['phone'] 
         message = request.POST['message']
         user_id = request.POST['user_id']
         lessor_id = request.POST['lessor_id']

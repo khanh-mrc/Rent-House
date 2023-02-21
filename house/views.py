@@ -52,13 +52,17 @@ def listing_delete(request, pk):
 
 @login_required
 def listing_update(request, pk):
+    if request.method=="POST":
+        listing_id = request.POST['listing_id']
+    print("listing_id")
     listing=Listing.objects.get(id=pk)
     form=ListingForm(instance=listing)
     if request.method== "POST":
         form = ListingForm(request.POST,request.FILES, instance= listing)
         if form.is_valid():
             form.save()
-            return redirect('/dashboard')
+            messages.success(request,"Your Post has been update successfully !")
+            return redirect('dashboard')
     context={
         'form': form
     }
